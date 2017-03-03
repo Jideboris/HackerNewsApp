@@ -1,0 +1,73 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div class="list-group margin-b-3">
+                <div ng-repeat="model in studentscoremenu">
+                    <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">EMAILING REPORTS</b></h4>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="level">Level:</label>
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teacherlevels">
+                        <option value="">-- Please select student level --</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="subject">Subject:</label>
+                    <select class="form-control" ng-model="selectedsubject" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teachersubjects">
+                        <option value="">-- Please select subject --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-11">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Name</th>
+                                    <th>Comment</th>
+                                    <th>Mobile</th>
+                                    <th>Report</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="model in studenttestassignments | orderBy:'fullname'">
+                                    <td>{{$index + 1}}.</td>
+                                    <td class="col-lg-3"><a ng-click="processshow(model)">{{model.fullname}}</a></td>
+                                    <td class="col-lg-6" ng-show="model.madevisible"><textarea class="form-control" rows="5" ng-model="teachercomment"></textarea></td>
+                                    <td class="col-lg-4" ng-show="model.madevisible"><input type="text" ng-model="mobilenumber" class="form-control" /></td>
+                                    <td ng-show="model.madevisible"><input type="checkbox" ng-model="includereport" class="form-control" /></td>
+                                    <td ng-show="model.madevisible"><button type="submit" ng-click="saveassignmentscores()" class="btn btn-primary">send</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-11">
+                <div class="row">
+                    <button type="submit" ng-click="saveassignmentscores()" class="btn btn-primary">Send All</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

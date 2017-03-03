@@ -1,0 +1,243 @@
+﻿
+<div class="row content">
+    <div class="col-sm-11 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">Add/Edit Question Template</b></h4>
+            <br />
+            <input type="hidden" value="{{questionno}}" />
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="sel1">Question Format:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="sel1" ng-model="questionformat">
+                        <option>Please select..</option>
+                        <option>Graph-Image</option>
+                        <option>Diagram-Image</option>
+                        <option>Word-Image</option>
+                        <option>Text</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="uploadquestion">Upload question:</label>
+                </div>
+                <div class="col-sm-3">
+                    <input type="file" file-model="myFile" />
+                </div>
+                <div class="col-sm-1">
+                    <a class="btn btn-primary" ng-click="uploadFile(avatarImage._id)">upload</a>
+                </div>
+                <div class="col-sm-3">
+                    <div ng-show="avatarImage.image.length>0">
+                        <img src='data:image/jpeg;base64,{{avatarImage.image}}' width="250" height="250" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="nature">Nature:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="nature" ng-model="questionnature" ng-change="processmathematicalskill()">
+                        <option>Please select..</option>
+                        <option>Mathematical</option>
+                        <option>Non-Mathematical</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="subject">Subjects:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" ng-change="processtopics(selectedsubject)"
+                            ng-model="selectedsubject" ng-options="item.description as item.description for item in subjects"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="topics">Topics:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control"
+                            ng-model="selectedtopic" ng-options="item.description as item.description for item in subjecttopics"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="level">Level:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="level" ng-model="questionlevel">
+                        <option>Please select..</option>
+                        <option>O</option>
+                        <option>A</option>
+                        <option>Year 7</option>
+                        <option>Year 8</option>
+                        <option>Year 9</option>
+                        <option>Year 10</option>
+                        <option>Year 11</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="practice">Practice:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="practice" ng-model="questiontypepractice">
+                        <option>Please select..</option>
+                        <option>Individual</option>
+                        <option>Group</option>
+                        <option>Both</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label" for="difficultlevel">Weight:</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="difficultlevel" ng-model="questiondifficultyweight">
+                        <option>Please select..</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label class="control-label" for="timetospent">Reasonable Time(Mins):</label>
+                </div>
+                <div class="col-sm-5">
+                    <select class="form-control" id="timetospent" ng-model="timetospendanswerquestion">
+                        <option>Please select..</option>
+                        <option>1.0</option>
+                        <option>1.5</option>
+                        <option>2.0</option>
+                        <option>2.5</option>
+                        <option>3.0</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="lackingSkillSet">If failed? Lacking Skillsets:</label>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-model="selectedquestion" ng-repeat="model in lackedSkillSets| orderBy: 'description' ">
+                                    <td> {{$index + 1}}.</td>
+                                    <td>{{model.description}}</td>
+                                    <td>
+                                        <a ng-click="deletelackedskillset(model._id)">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label class="control-label" for="additionalInfo">Additional Information:</label>
+                </div>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control" id="additionalInfo" ng-model="additionalskillset" />
+                </div>
+                <div class="col-sm-1">
+                    <button type="submit" ng-click="addLackedSkillSet(additionalskillset)" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-11">
+                    <label class="error" style="color:red" for="message">{{message}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label ng-show="mathematicalSkills.length>0" class="control-label" for="mathematicalSkills">Select Related Mathematical Skills:</label>
+                    <div role="form" ng-repeat="x in mathematicalSkillSets">
+                        <div id="mathematicalSkills" class="checkbox">
+                            <input type="checkbox" ng-click="checkFirst(x.description,x.ischecked)" ng-checked="x.ischecked" checklist-value="x.description"> {{x.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="description">Hints:</label>
+                    <textarea class="form-control" rows="5" id="hints" ng-model="questionanswerhints"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="description">Question:</label>
+                    <textarea class="form-control" rows="5" id="description" ng-model="questiontext"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="optionA">Option A:</label>
+                    <textarea class="form-control" rows="5" id="optionA" ng-model="optiona"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="optionB">Option B:</label>
+                    <textarea class="form-control" rows="5" id="optionB" ng-model="optionb"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="optionC">Option C:</label>
+                    <textarea class="form-control" rows="5" id="optionC" ng-model="optionc"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="optionD">Option D:</label>
+                    <textarea class="form-control" rows="5" id="optionD" ng-model="optiond"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="optionE">Option E:</label>
+                    <textarea class="form-control" rows="5" id="optionE" ng-model="optione"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="sel1">Correct Option:</label>
+                    <select class="form-control" id="correctOption" ng-model="correctoption">
+                        <option>Please select..</option>
+                        <option>OptionA</option>
+                        <option>OptionB</option>
+                        <option>OptionC</option>
+                        <option>OptionD</option>
+                        <option>OptionE</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-offset-10">
+                <button type="submit" ng-click="addQuestion()" class="btn btn-primary">Save</button>
+                <a href="#question" class="btn btn-primary active">Back</a>
+            </div>
+        </form>
+
+    </div>
+</div>

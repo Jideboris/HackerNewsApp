@@ -1,0 +1,45 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <a href="#schoolclientstudent" class="list-group-item active">Students</a>
+            <a href="#schoolclientteacher" class="list-group-item">Teachers</a>
+
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form name="form" class="frmReg form-horizontal" role="form" id="addedstudentform">
+            <h4><b style="border-bottom: 1px black solid">Register New Student</b></h4>
+            <br />
+            <div class="form-group">
+             
+                <div class="col-sm-12">
+
+                    <div class="col-sm-4">
+                        <label class="control-label">Upload Students(Excel Spreadsheet(xlsx)):</label>
+                        <input type="file" file-model="myFile" />
+
+                    </div>
+                    <div class="col-sm-offset-4">
+                        <a title="click to download sample acceptable template to upload students in batch.The format of each cell as follows:
+                           Fullname:General;Dob:Text;Level:General;PersonalEmail:General;
+                           ParentEmail:General;ParentNumber:Text;Subjects:General" href="" data-toggle="tooltip">
+                            <img ng-click="downloadtemplate()" ng-src="/assets/img/excel_icon.png" />
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <label style="color:red">{{message}}</label>
+                </div>
+
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" ng-click="addbatchstudentschoolclient()" class="btn btn-primary">Save</button>
+                <a href="#schoolclientstudent" class="btn btn-primary active">Back</a>
+            </div>
+        </form>
+
+    </div>
+</div>

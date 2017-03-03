@@ -1,0 +1,76 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div ng-repeat="model in adminmenus">
+                <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <div class="form-group">
+                <h4><b style="border-bottom:1px black solid">Disciplinary Records</b></h4>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="level">Levels:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" ng-model="selectedlevel" ng-change="getstudentdesciplinerecords()">
+                            <option value="">-- Please select student level --</option>
+                            <option value="Year 7">Year 7</option>
+                            <option value="Year 8">Year 8</option>
+                            <option value="Year 9">Year 9</option>
+                            <option value="Year 10">Year 10</option>
+                            <option value="Year 11">Year 11</option>
+                            <option value="Year 12">Year 12</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Level/Year</th>
+                                <th>DOB</th>
+                                <th>Offence</th>
+                                <th>Discipline</th>
+                                <th>Date</th>
+                                <th>Remark</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="{{showmessage}}">
+                                <td colspan="8">
+                                    <label style="color:red">{{message}}</label>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="model in schoolstudentdisplinaryrecords">
+                                <td>{{model.fullname}}</td>
+                                <td>{{model.level}}</td>
+                                <td>{{model.dateofbirth}}</td>
+                                <td>{{model.offence}}</td>
+                                <td>{{model.penalty}}</td>
+                                <td>{{model.dateadded}}</td>
+                                <td>{{model.remark}}</td>
+                                <td>
+                                    <a href="#addschoolclientstudentdesciplinerecord/{{model._id}}">Edit</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <a href="#addschoolclientstudentdesciplinerecord" class="btn btn-primary active">Add Discipline</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

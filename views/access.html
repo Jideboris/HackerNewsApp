@@ -1,0 +1,248 @@
+﻿ 
+<div class="row content">
+
+    <div class="col-sm-2 sidenav">
+      
+        <div class="list-group margin-b-3">
+            <a href="#" class="list-group-item">Reports Analysics</a>
+            <a href="#" class="list-group-item">Results</a>
+            <a href="#" class="list-group-item">Areas of concentration</a>
+            <a href="#" class="list-group-item">Graphs</a>
+            <a href="#" class="list-group-item">Recommendations</a>
+        </div>
+    </div>
+    <div class="col-sm-6 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <div class="form-group">
+                <h3>Questions</h3>
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            1.
+                        </div>
+                        <div class="media-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <img class="img-responsive" src="/assets/img/sample_velocity_time_graph.png" alt="velocity-time-graph">
+                                </div>
+                                <div class="panel-body">
+                                    <p>What is Physics?</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            a.
+                        </div>
+                        <div class="media-body">
+                            <p>Is the study of matter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            b.
+                        </div>
+                        <div class="media-body">
+                            <p>Is the study of water</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            c.
+                        </div>
+                        <div class="media-body">
+                            <p>Is the study of food processing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            d.
+                        </div>
+                        <div class="media-body">
+                            <p>Is the study of chemistry and biology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            e.
+                        </div>
+                        <div class="media-body">
+                            <p>All of the above</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="well">
+                    <div class="media">
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#">Previous</a>
+                            </li>
+                            <li class="next">
+                                <a href="#">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-sm-4 sidenav">
+        <div class="center">
+            <canvas id="canvas"></canvas>
+
+        </div>
+        <!-- Panel -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>Cumulative Test Progression</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Progress Bar </p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>Comparative Test Progression</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Pie/Bar Chart</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>Problem-Solving Ability</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Pie Chart</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>Conceptual Grasping Ability</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Pie Chart</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    if ($(document).ready()) {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90;
+        setInterval(drawClock, 1000);
+
+        function drawClock() {
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+        }
+
+        function drawFace(ctx, radius) {
+            var grad;
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+            grad.addColorStop(0, '#333');
+            grad.addColorStop(0.5, 'white');
+            grad.addColorStop(1, '#333');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = radius * 0.1;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+        }
+
+        function drawNumbers(ctx, radius) {
+            var ang;
+            var num;
+            ctx.font = radius * 0.15 + "px arial";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            for (num = 1; num < 13; num++) {
+                ang = num * Math.PI / 6;
+                ctx.rotate(ang);
+                ctx.translate(0, -radius * 0.85);
+                ctx.rotate(-ang);
+                ctx.fillText(num.toString(), 0, 0);
+                ctx.rotate(ang);
+                ctx.translate(0, radius * 0.85);
+                ctx.rotate(-ang);
+            }
+        }
+
+        function drawTime(ctx, radius) {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            //hour
+            hour = hour % 12;
+            hour = (hour * Math.PI / 6) +
+            (minute * Math.PI / (6 * 60)) +
+            (second * Math.PI / (360 * 60));
+            drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+            //minute
+            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+            drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+            // second
+            second = (second * Math.PI / 30);
+            drawHand(ctx, second, radius * 0.9, radius * 0.02);
+        }
+
+        function drawHand(ctx, pos, length, width) {
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0, 0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+    }
+</script>
+ 

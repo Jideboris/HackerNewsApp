@@ -1,0 +1,142 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div ng-repeat="model in assignmentsetupmenu">
+                <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm" style="height:100%">
+            <h4><b style="border-bottom:1px black solid">Assignment Setup</b></h4>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <label for="level">Levels:</label>
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teacherlevels">
+                        <option value="">-- Please select student level --</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="level">Subjects:</label>
+                    <select class="form-control" ng-model="selectedsubject" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teachersubjects">
+                        <option value="">-- Please select subject --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+            <div ng-show="hide">
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <div class="col-lg-6"><label class="control-label" for="teachersubjectstudent">Today's Subject Attendance:  <b style="color:forestgreen">{{todaydate}}</b></label></div>
+                        <div class="col-lg-5">
+                            <a ng-click="processshow('V')">View Assignment</a>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Items</th>
+                                        <th>Name</th>
+                                        <th>DOB</th>
+                                        <th><input type="checkbox" ng-model="selectedall" ng-click="selectAll(selectedall)" /></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-model="selectedstudent" ng-repeat="model in todaystudentteachersubjectassignment | orderBy:'fullname'">
+                                        <td>{{$index + 1}}.</td>
+                                        <td>{{model.fullname}}</td>
+                                        <td>{{model.dob}}</td>
+                                        <td>
+                                            <input type="checkbox" ng-model="model.selected" ng-checked="{{model.selected}}" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label" for="description">Assignment Description:</label>
+                                        </td>
+                                        <td><input type="text" class="form-control" id="additionalInfo" ng-model="assignmentdescription"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="control-label" for="assignmentFile">Upload Assignments:</label></td>
+                                        <td><input type="file" file-model="assignmentFile" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="control-label" for="description">Enter Assigments:</label></td>
+                                        <td><textarea class="form-control" rows="10" id="description" ng-model="assignmenttext"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-offset-11">
+                    <button type="submit" ng-click="processTeacherAssignmentForStudents()" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            <div ng-hide="hide">
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <div class="col-lg-6">
+                            <label class="control-label">Archieved assignments as at:  <b style="color:forestgreen">{{todaydate}}</b></label>
+                        </div>
+                        <div class="col-lg-6"><a ng-click="processshow('A')">Add Assignment</a></div><br />
+                        <br />
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Assignments</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>DateAdded</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="recordfound"><td colspan="7"><label class="control-label"><b style="color:forestgreen">No record found!</b></label></td></tr>
+                                    <tr ng-model="selectedteacherassignment" ng-repeat="model in teacherassignmentarchive ">
+                                        <td> {{$index + 1}}.</td>
+                                        <td>{{model.description}}</td>
+                                        <td>{{model.status}}</td>
+                                        <td>{{model.dateadded}}</td>
+                                        <td>
+                                            <a ng-click="loadassignment(model.id)">download</a>
+                                        </td>
+                                        <td>
+                                            <a ng-click="removeassignment(model.id)">delete</a>
+                                        </td>
+                                        <td>
+                                            <a ng-click="Reassigned(model)">reassign</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

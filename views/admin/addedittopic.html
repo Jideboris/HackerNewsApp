@@ -1,0 +1,64 @@
+﻿<div class="row content">
+    <div class="col-sm-12">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">Add/Edit Topic Template</b></h4>
+            <br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="discription">Description:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="discription" ng-model="topicdescription">
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="subject">Subject:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <select id="subject" class="form-control" ng-model="selectsubject">
+                            <option>Please select..</option>
+                            <option ng-repeat="obj in subjects" value="{{obj.description}}">{{obj.description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="level">Level:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" id="level" ng-model="topiclevel">
+                            <option>Please select..</option>
+                            <option>AO</option>
+                            <option>O</option>
+                            <option>A</option>
+                            <option>Year 7</option>
+                            <option>Year 8</option>
+                            <option>Year 9</option>
+                            <option>Year 10</option>
+                            <option>Year 11</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-offset-8">
+                    <br />
+                    <br />
+                    <button type="submit" ng-click="addTopic()" class="btn btn-primary">Save</button>
+                    <a href="#topic" class="btn btn-primary active">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

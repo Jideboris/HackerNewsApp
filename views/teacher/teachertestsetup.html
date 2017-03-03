@@ -1,0 +1,102 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div class="list-group margin-b-3">
+                <div ng-repeat="model in testsetupmenu">
+                    <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">TEST SET UP</b></h4>
+
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <label for="level">Level:</label>
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teacherlevels">
+                        <option value="">-- Please select student level --</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-5">
+                    <label for="subject">Subject:</label>
+                    <select class="form-control" ng-model="selectedsubject" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teachersubjects">
+                        <option value="">-- Please select subject --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row-fluid">
+                    <div class="col-sm-10">
+                        <label for="subject">Topics:</label>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class='checkbox' ng-repeat='model in teachersubjecttopics'>
+                                                <label>
+                                                    <input type="checkbox" ng-model="model.selected" ng-checked="{{model.selected}}" />  {{model.description}}
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-11">
+                    <label class="control-label" for="teachersubjectstudent">Today's Test Attendance:  <b style="color:forestgreen">{{todaydate}}</b></label>
+                    <br />
+                    <br />
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Name</th>
+                                    <th>DOB</th>
+                                    <th><input type="checkbox" ng-model="selectedall" ng-click="selectAll(selectedall)" /></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-model="selected" ng-repeat="model in todayteachersubjecttest | orderBy:'fullname'">
+                                    <td>{{$index + 1}}.</td>
+                                    <td>{{model.fullname}}</td>
+                                    <td>{{model.dob}}</td>
+                                    <td>
+                                        <input type="checkbox" ng-model="model.selected"  />
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-offset-10">
+                <br />
+                <br />
+                <button type="submit" ng-click="teachertodaysetuptest()" class="btn btn-primary">Save</button>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>

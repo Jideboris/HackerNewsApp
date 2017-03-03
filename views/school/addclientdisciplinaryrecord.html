@@ -1,0 +1,116 @@
+﻿<div class="row content">
+    <div class="col-sm-12 text-left">
+        <form name="form" class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom: 1px black solid">Register Student's Discipline</b></h4>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <label for="level">Levels:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" ng-model="selectedlevel" ng-change="getallyearstudents()">
+                            <option value="">-- Please select student level --</option>
+                            <option value="Year 7">Year 7</option>
+                            <option value="Year 8">Year 8</option>
+                            <option value="Year 9">Year 9</option>
+                            <option value="Year 10">Year 10</option>
+                            <option value="Year 11">Year 11</option>
+                            <option value="Year 12">Year 12</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <label for="students">Select Student:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" ng-model="selectedstudent" ng-change="AssignedSelectedStudent()"
+                                ng-options="item.selectedstudent for item in filteredstudents">
+                            <option value="">-- Please select student level --</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12" ng-class="{'has-error': form.fullname.$dirty && form.fullname.$error.required }">
+                    <div class="col-sm-3">
+                        <label class="control-label" for="fullname">Full Name:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="fullname" ng-model="fullname" required>
+                    </div>
+                    <div class="col-sm-5">
+                        <p ng-show="form.fullname.$dirty && form.fullname.$error.required" class="help-block">Fullname is required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12" ng-class="{'has-error': form.datepicker.$dirty && form.datepicker.$error.required }">
+                    <div class="col-sm-3">
+                        <label class="control-label" for="dob">DOB:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input name="datepicker" class="form-control" placeholder="dd/mm/yyyy" type="date" ng-model="dateofbirth" required />
+                    </div>
+                    <div class="col-sm-5">
+                        <p ng-show="form.datepicker.$dirty && form.datepicker.$error.required" class="help-block">Dob is required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <label class="control-label">Offence Description:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" rows="5" id="hints" ng-model="offencedescription" required></textarea>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <label class="control-label">Discipline Description:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" rows="5" id="hints" ng-model="serveddiscipline" required></textarea>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <label class="control-label">Teacher's Remark:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" rows="5" id="hints" ng-model="teacherremark" required></textarea>
+                    </div>
+                    <div class="col-sm-5">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <div class="col-sm-12">
+                    <button type="submit" ng-disabled="form.$invalid" ng-click="adddisciplinetostudentrecord()" class="btn btn-primary">Save</button>
+                    <a href="#schooldisciplinary" class="btn btn-primary active">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,123 @@
+﻿<div class="row content" ng-init="loadsubjects('0')">
+    <div class="col-sm-2 sidenav">
+        <a class="list-group-item"><label>About Us</label></a>
+        <a class="list-group-item"><label>Aims & Objectives</label></a>
+        <a class="list-group-item"><label>Contact Us</label></a>
+        <a class="list-group-item"><label>Subscribe</label></a>
+        <a class="list-group-item"><label>Useful Links</label></a>
+    </div>
+    <div class="col-sm-7 text-left">
+        <div ng-if="isdefault" ng-include="'/views/templates/default.html'"></div>
+        <!--<div ng-if="isaboutlogin" ng-include="'/views/login/login.html'">-->
+        <div ng-if="isaboutlogin">
+            <form name="form" class="frmReg form-horizontal" role="form" id="subscriptionForm">
+                <h4><b style="border-bottom:1px black solid">Login</b></h4>
+                <br />
+                <div class="form-group">
+                    <label for="subject">Category:</label>
+                    <select class="form-control" id="category" ng-model="$parent.category" required
+                            ng-options="c.description as c.description for c in categories| orderBy:'description'">
+                        <option value="">-- please select a group you belong --</option>
+
+                    </select>
+                    <!--<select class="form-control" id="subject" ng-model="$parent.category">
+                        <option>Please select..</option>
+                        <option>admin</option>
+                        <option>school</option>
+                        <option>student</option>
+                        <option>parent</option>
+                        <option>teacher</option>
+                    </select>-->
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" ng-model="$parent.identity" required />
+                    <p ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</p>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" ng-model="$parent.password" required />
+                    <p ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</p>
+                </div>
+                <!--<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <label for="passcode">Passcode</label>
+                    <input type="password" name="passcode" id="passcode" class="form-control" ng-model="password" required />
+                    <p ng-show="form.passcode.$dirty && form.passcode.$error.required" class="help-block">Passcode is required</p>
+                </div>-->
+                <!--<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" ng-model="email" required />
+                    <p ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</p>
+                </div>-->
+                <div class="form-actions">
+                    <button type="button" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary" ng-click="login()">Login</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <a ng-show="!isschool" href="#/register" class="btn btn-link">Register</a>
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="col-sm-3 sidenav">
+        <div>
+            <form role="form">
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" ng-click="loadsubjects('0')" ng-checked="true">O/L
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" ng-click="loadsubjects('1')">A/L
+                </label>
+                <br />
+                <br />
+                <h4>{{heading}}</h4>
+            </form>
+
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr ng-repeat="model in subjects| orderBy: 'description' ">
+                        <td>
+                            <a style="pointer-events:visible;cursor:crosshair" ng-click="getsubjectdefinition(model.description)" ng-class="{selected: model.description === selectedsubject}"
+                               class="list-group-item"><label>{{model.description}}</label></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>Current Global Performances</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>current scores/country/etc</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>GCE O/L Requirements</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Subjects combinations and target grades</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>GCE A/L Requirements</b>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>Subjects combinations and target grades</p>
+            </div>
+        </div>
+
+    </div>
+</div>

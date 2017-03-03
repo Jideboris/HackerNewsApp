@@ -1,0 +1,156 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div class="list-group margin-b-3">
+                <div ng-repeat="model in studentscoremenu">
+                    <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">STUDENTS' SCORES</b></h4>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="level">Level:</label>
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teacherlevels">
+                        <option value="">-- Please select student level --</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="subject">Subject:</label>
+                    <select class="form-control" ng-model="selectedsubject" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teachersubjects">
+                        <option value="">-- Please select subject --</option>
+                    </select>
+                </div>
+                <!--<div class="col-sm-3">
+                    <label for="seldate">Select Date:</label>
+                    <input type="date" class="form-control" id="seldate" name="input" ng-model="selecteddate"
+                           placeholder="dd/MM/yyyy" datepicker />
+                </div>-->
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+            <div ng-show="hide">
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <label for="assigment">Assignments:</label>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <select class="form-control" ng-model="selectedassignment" ng-change="processassignments()"
+                                        ng-options="item.assignmentdescription as item.assignmentdescription for item in studentassignments">
+                                    <option value="">-- Please select assignment --</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <a ng-click="showtest('T')">Show Online Tests</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Items</th>
+                                        <th>Name</th>
+                                        <th>Scores</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-model="selected" ng-repeat="model in studenttestassignments | orderBy:'fullname'">
+                                        <td>{{$index + 1}}.</td>
+                                        <td><label>{{model.fullname}}</label></td>
+                                        <td><div class="col-lg-5"><input type="text" ng-model="model.assignmentscore" /></div></td>
+                                        <td><label>{{model.assignmentpercentage}}<label ng-show="{{ispercentage}}">%</label></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-offset-6">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label class="form-control">Total:</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="text" ng-model="assignmenttotal" class="form-control" />
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="submit" ng-click="saveassignmentscores()" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="hide">
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <label for="assigment">Online Tests:</label>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <select class="form-control" ng-model="selectedtest" ng-change="processassignmentsandtest()"
+                                        ng-options="item.description as item.description for item in studentonlinetests">
+                                    <option value="">-- Please select test --</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <a ng-click="showtest('O')">Show Assignments</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Items</th>
+                                        <th>Name</th>
+                                        <th>Scores</th>
+                                        <th>Total</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-model="selected" ng-repeat="model in studenttests | orderBy:'fullname'">
+                                        <td>{{$index + 1}}.</td>
+                                        <td><label>{{model.fullname}}</label></td>
+                                        <td><div class="col-lg-5"><input type="text" ng-model="model.score" /></div></td>
+                                        <td><div class="col-lg-5"><input type="text" ng-model="model.total" /></div></td>
+                                        <td><label>{{model.percentage}}</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-offset-6">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label class="form-control">Total:</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="text" ng-model="onlinetesttotal" class="form-control" />
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="submit" ng-click="savetestscores()" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
