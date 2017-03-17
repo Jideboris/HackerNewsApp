@@ -1,5 +1,5 @@
 // script.js
-
+path = 'http://localhost:3000'
 var eAssessorApp = angular.module('eAssessorApp', ['ngRoute', 'ngSanitize', 'ngCookies']);
 
 eAssessorApp.config(function ($routeProvider) {
@@ -29,10 +29,18 @@ eAssessorApp.config(function ($routeProvider) {
              templateUrl: "/views/studentcomparativeanalysis.html",
              controller: "studentcontroller"
          })
-         .when("/student", {
-             templateUrl: "/views/student.html",
+         .when("/studentreport", {
+             templateUrl: "/views/student/student.html",
              controller: "studentcontroller"
          })
+          .when("/comparativereport", {
+              templateUrl: "/views/student/studentcomparativeanalysis.html",
+              controller: "studentcontroller"
+          })
+        .when("/progresstracker", {
+            templateUrl: "/views/student/studentprogresstracker.html",
+            controller: "studentcontroller"
+        })
          .when("/addquestion/:id", {
              templateUrl: "/views/admin/addeditquestion.html",
              controller: "questioncontroller"
@@ -166,10 +174,10 @@ eAssessorApp.config(function ($routeProvider) {
             templateUrl: "/views/school/clientdisciplinaryrecord.html",
             controller: "clientregistrationcontroller"
         })
-    .when("/schoolpromotionrecords", {
-        templateUrl: "/views/school/promotestudents.html",
-        controller: "clientregistrationcontroller"
-    })
+        .when("/schoolpromotionrecords", {
+            templateUrl: "/views/school/promotestudents.html",
+            controller: "clientregistrationcontroller"
+        })
          .when("/schoolreport", {
              templateUrl: "/views/school/schoolreports.html",
              controller: "clientregistrationcontroller"
@@ -248,6 +256,9 @@ function run($rootScope, $location, $cookieStore, $http) {
             break;
         case 'teacher':
             $rootScope.teacher = { "pointer-events": "", "cursor": "" };
+            break;
+        case 'student':
+            $rootScope.student = { "pointer-events": "", "cursor": "" };
             break;
     }
 

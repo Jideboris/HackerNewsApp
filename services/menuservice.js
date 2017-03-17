@@ -3,6 +3,7 @@
     menus.assignmentsetup = assignmentsetup;
     menus.admins = admins;
     menus.schools = schools;
+    menus.students = students;
     return menus;
 
     function assignmentsetup() {
@@ -50,5 +51,12 @@
         { id: "#schoolmonitor", description: "Monitoring Tools", style: "list-group-item" }
 
         ]
+    }
+    function students() {
+        return [
+           { id: "#studentreport", description: "Reports", style: "list-group-item" },
+           { id: "#comparativereport", description: "Comparative Analysis", style: "list-group-item" },
+           { id: "#progresstracker", description: "Progress Tracker", style: "list-group-item" },
+         ]
     }
 }]);

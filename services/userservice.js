@@ -1,7 +1,7 @@
 ﻿
 eAssessorApp.service('userservice', ['$http', function ($http) {
 
-    var urlclientidentity = 'http://localhost:3000/clientidentity/';
+    var urlclientidentity = path + '/clientidentity/';
     var service = {};
 
     service.GetAll = GetAll;
@@ -22,7 +22,8 @@ eAssessorApp.service('userservice', ['$http', function ($http) {
     }
 
     function getbyidentity(category, identity) {
-         return $http.get(urlclientidentity + category + '/' + identity).then(handleSuccess, handleError('Error getting user by username'));
+        debugger;
+        return $http.get(urlclientidentity + category + '/' + identity).then(handleSuccess, handleError('Error getting user by username'));
     }
 
     function Create(user) {
@@ -50,4 +51,3 @@ eAssessorApp.service('userservice', ['$http', function ($http) {
     }
 
 }]);
- 

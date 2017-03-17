@@ -5,11 +5,13 @@
         //  authenticationservice.clearcredentials();
     })();
     $scope.categories = commonservice.categories();
-    $scope.login = function login() {   
+    $scope.login = function login() {
+        debugger;
         $scope.dataLoading = true;
         $scope.isschool = false;
         authenticationservice.login($scope.category, $scope.identity, $scope.password).then(function (response) {   
             if (response.success) {
+                debugger;
                 authenticationservice.setcredentials($scope.identity, $scope.password);
                 $scope.dataLoading = false;
                 switch ($scope.category) {
@@ -34,6 +36,12 @@
                         $rootScope.teacher = { "visibility": "visible" };
                         $cookieStore.put('category', $scope.category);
                         $location.path('/teacherstudentregistration');
+                        $scope.isschool = false;
+                        break;
+                    case 'student':
+                        $rootScope.student = { "visibility": "visible" };
+                        $cookieStore.put('category', $scope.category);
+                        $location.path('/studentreport');
                         $scope.isschool = false;
                         break;
                 }

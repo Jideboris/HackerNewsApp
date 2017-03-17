@@ -1,6 +1,4 @@
-﻿path = 'http://localhost:3000'
-
-function prepareschoolstudent(data) {
+﻿function prepareschoolstudent(data) {
     let prepareschoolstuduent = [];
     for (let i = 0; i < data.length; i++) {
         let fullname = data[i].schoolstudent.fullname;
