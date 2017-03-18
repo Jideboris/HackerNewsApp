@@ -1,13 +1,20 @@
-﻿eAssessorApp.controller('studentcontroller', function ($scope, $location, menuservice, $cookieStore) {
+﻿eAssessorApp.controller('studentcontroller', function ($scope, $location, commonservice, menuservice, studentservice, $cookieStore) {
     var user = $cookieStore.get('globals');
     var authdata = user.currentUser.authdata;
+    if ($scope.selectedsession != 'undefined' || $scope.selectedsession == "") {
+        $scope.selectedsession = "Please select...";
+    }
+    if ($scope.selectedstudentsubcat != 'undefined' || $scope.selectedstudentsubcat == "") {
+        $scope.selectedstudentsubcat = "Please select...";
+    }
 
     getpassschoolsessions();
-    $scope.selectedstudentsession = "Please select...";
-    $scope.selectedstudentsubcat = "Please select...";
-  
-    $scope.processselectedstudentsession = function () {
-        let selsession = $scope.selectedstudentsession;
+    getstudentofferedsubjects();
+    getsessions();
+    getreportcategory();
+
+    $scope.processstudentsession = function () {
+        let selsession = $scope.selectedsession;
         if (selsession === "Past") {
             $scope.showselectedstudents = true;
         }
@@ -17,15 +24,29 @@
     }
     $scope.processselectedstudentsubcat = function () {
         let selsubcat = $scope.selectedstudentsubcat;
-        if (selsubcat === "Selected Subject") {
+        if (selsubcat === "Single Subject") {
             $scope.showstudentregsubjects = true;
         }
         else {
             $scope.showstudentregsubjects = false;
         }
     }
-    function getstudentofferedsubjects(authdata) {
-
+    function getreportcategory() {
+        let reportcat = commonservice.reportcategory();
+        $scope.reportcategories = reportcat;
+    }
+    function getsessions() {
+        let session = commonservice.session();
+        $scope.sessions = session;
+    }
+    function getstudentofferedsubjects() {
+        let studentsubjects = [];
+        studentservice.getstudentregisteredsubjects(authdata).then(function (response) {
+            response.data.map(function (item) {
+                return studentsubjects.push({ description: item });
+            })
+            $scope.studentregsubjects = studentsubjects;
+        });
     }
     function getpassschoolsessions() {
         let newsession = 0;

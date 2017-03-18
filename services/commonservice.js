@@ -4,8 +4,17 @@
     common.makeid = makeid;
     common.qualifications = qualifications;
     common.categories = categories;
+    common.session = session;
+    common.reportcategory = reportcategory;
     return common;
-
+    function session() {
+        return [{ id: "Current", description: "Current" },
+                { id: "Past", description: "Past" } ]
+    };
+    function reportcategory() {
+        return [{ id: "All", description: "All" },
+                { id: "Single Subject", description: "Single Subject" }]
+    };
     function levels() {
         return [{ id: "O/L", description: "O/L" },
     { id: "A/L", description: "A/L" },

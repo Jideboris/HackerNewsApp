@@ -6,12 +6,10 @@
     })();
     $scope.categories = commonservice.categories();
     $scope.login = function login() {
-        debugger;
         $scope.dataLoading = true;
         $scope.isschool = false;
         authenticationservice.login($scope.category, $scope.identity, $scope.password).then(function (response) {   
             if (response.success) {
-                debugger;
                 authenticationservice.setcredentials($scope.identity, $scope.password);
                 $scope.dataLoading = false;
                 switch ($scope.category) {

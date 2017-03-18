@@ -14,10 +14,9 @@
                     <label for="session">Session:</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" id="session">
-                        <option>Please select...</option>
-                        <option>Current</option>
-                        <option>Past</option>
+                    <select class="form-control" ng-model="selectedsession" ng-change="processstudentsession()"
+                            ng-options="item.description as item.description for item in sessions">
+                        <option value="">-- Please select session --</option>
                     </select>
                 </div>
             </div>
@@ -27,13 +26,9 @@
                     <label for="selectsession">Select Session:</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" id="selectsession">
-                        <option>Please select...</option>
-                        <option>17/18</option>
-                        <option>16/17</option>
-                        <option>15/16</option>
-                        <option>14/15</option>
-                        <option>13/14</option>
+                    <select class="form-control" ng-model="selectedstudentsession" ng-change="processelectedstudentsessions()"
+                            ng-options="item.description as item.description for item in passschoolsessions">
+                        <option value="">-- Please select session --</option>
                     </select>
                 </div>
 
@@ -44,13 +39,9 @@
                     <label for="subject">Registered Subjects:</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" id="subject">
-                        <option>Please select...</option>
-                        <option>Mathematics</option>
-                        <option>Physics</option>
-                        <option>Chemistry</option>
-                        <option>Biology</option>
-                        <option>English Language</option>
+                    <select class="form-control" ng-model="selectedstudentsubject" ng-change="processregisteredstudentsubjects()"
+                            ng-options="item.description as item.description for item in studentregsubjects">
+                        <option value="">-- Please select session --</option>
                     </select>
                 </div>
 
