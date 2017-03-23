@@ -4,8 +4,30 @@
     menus.admins = admins;
     menus.schools = schools;
     menus.students = students;
+    menus.homemenus = homemenu;
     return menus;
 
+    function homemenu() {
+        return [
+                { id: "#firsttimer", description: "First timer?" },
+                { id: "#aboutus", description: "Find out about us?" },
+                { id: "#ouraimandobjective", description: "Our aims and objectives?" },
+                { id: "#contactus", description: "Contact us?" },
+                { id: "#signup", description: "Register as a user?" },
+                { id: "#usefullink", description: "Find useful links?" },
+                { id: "#ourolevelsubject", description: "Currently covered O/L subjects" },
+                { id: "#ouralevelsubject", description: "Currently covered A/L subjects" },
+                { id: "#signin", description: "I'm a user" },
+                { id: "#schoolperformances", description: "View schools' performances" },
+                { id: "#quickpractice", description: "Practice/Test yourself" },
+                { id: "#myhomework", description: "Home work" },
+                { id: "#registeredusersassessment", description: "Assessment" },
+                { id: "#needhelps", description: "I need help" },
+                { id: "#teacherremarks", description: "Read teacher's remarks" },
+                { id: "#topstudents", description: "Top students" },
+
+        ]
+    };
     function assignmentsetup() {
         return [
             { id: "#teacherstudentregistration", description: "Registration", style: "list-group-item" },
@@ -57,6 +79,6 @@
            { id: "#studentreport", description: "Reports", style: "list-group-item" },
            { id: "#comparativereport", description: "Comparative Analysis", style: "list-group-item" },
            { id: "#progresstracker", description: "Progress Tracker", style: "list-group-item" },
-         ]
+        ]
     }
 }]);

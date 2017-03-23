@@ -1,4 +1,9 @@
-﻿eAssessorApp.controller('logincontroller', function ($scope, commonservice, $rootScope, $location, $cookieStore, authenticationservice, subjectservice, $sce) {
+﻿eAssessorApp.controller('logincontroller', function ($scope, commonservice, menuservice, $rootScope, $location,
+    $cookieStore, authenticationservice, subjectservice, $sce) {
+    $scope.homemenus = menuservice.homemenus().map(function (item) {
+      //  item = $sce.trustAsHtml(item)
+        return item;
+    });
     (function initController() {
 
         // reset login status
@@ -8,7 +13,7 @@
     $scope.login = function login() {
         $scope.dataLoading = true;
         $scope.isschool = false;
-        authenticationservice.login($scope.category, $scope.identity, $scope.password).then(function (response) {   
+        authenticationservice.login($scope.category, $scope.identity, $scope.password).then(function (response) {
             if (response.success) {
                 authenticationservice.setcredentials($scope.identity, $scope.password);
                 $scope.dataLoading = false;
@@ -75,13 +80,11 @@
     }
 
     $scope.getsubjectdefinition = function (subject) {
-
         var htmlcode = '';
         $scope.subjectdefinition = '';
         $scope.selectedsubject = subject;
 
         switch (subject) {
-
             case "Additional Mathematics":
                 htmlcode = "<p>GCSE Additional Mathematics takes the study of Mathematics " +
                      "beyond the content of GCSE Higher Tier. It introduces some of the mechanics and" +

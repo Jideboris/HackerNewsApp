@@ -9,6 +9,18 @@
         $("#myCarousel").carousel("next");
     });
 </script>
+<style>
+    .boxshadow {
+    position: relative;
+    -moz-box-shadow: 0px 0px 10px #b4b4b4;
+    -webkit-box-shadow: 0px 0px 10px #b4b4b4;
+    box-shadow: 0px 0px 10px #b4b4b4;
+    padding: 10px;
+    background: white;
+    border:2px ridge grey;
+}
+/*box-shadow:0px 0px 10px #b4b4b4"*/
+</style>
 <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
     <div class="form-group">
         <h4>{{ message }}</h4>
@@ -74,4 +86,5 @@
     <div class="form-group">
         <div ng-bind-html="subjectdefinition"></div>
     </div>
+   
 </form>

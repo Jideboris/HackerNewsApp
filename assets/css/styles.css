@@ -90,7 +90,7 @@ body {
 .container-fluid {
     max-width: 1200px;
 }
- 
+
 
 
 /**
@@ -174,6 +174,65 @@ span {
     border-radius: 5px;
 }
 
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-size: 0.5em auto;
+    background-position: right 0.25em center;
+    padding-right: 1em;
+    font-size: 1.5em;
+    background-image: url("data:image/svg+xml;charset=utf-8, \
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'> \
+      <polygon points='0,0 60,0 30,40' style='fill:black;'/> \
+    </svg>");
+}
+
+.home-container {
+    position: relative;
+    margin: 2px auto;
+    text-align: left;
+    vertical-align: middle;
+}
+
+    .home-container div {
+        display: inline-block;
+    }
+
+        .home-container div a {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0.5em;
+            padding: 3px;
+            white-space: normal;
+            text-align: center;
+            text-decoration: none;
+        }
+
+.boxshadow {
+    position: relative;
+    -moz-box-shadow: 0px 0px 10px #b4b4b4;
+    -webkit-box-shadow: 0px 0px 10px #b4b4b4;
+    box-shadow: 0px 0px 10px #b4b4b4;
+    padding: 10px;
+    background-color: rgba(141, 43, 43, 0.00);
+    /*border: 2px ridge #0f006f;*/
+    height: 140px;
+    width: 245px;
+}
+
+.inner-button {
+    color: black;
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .sidenav {
     background-color: #f1f1f1;
     padding-top: 20px;
@@ -181,4 +240,3 @@ span {
     margin: auto 0;
     width: 20%;
 }
-
