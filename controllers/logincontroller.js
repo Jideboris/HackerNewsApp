@@ -1,6 +1,7 @@
 ﻿eAssessorApp.controller('logincontroller', function ($scope, commonservice, menuservice, $rootScope, $location,
     $cookieStore, authenticationservice, subjectservice, $sce) {
     $scope.homemenus = menuservice.homemenus().map(function (item) {
+        //use logic here to sort by most clicked by users first.
       //  item = $sce.trustAsHtml(item)
         return item;
     });
