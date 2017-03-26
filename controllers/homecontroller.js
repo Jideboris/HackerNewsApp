@@ -1,5 +1,5 @@
 ﻿eAssessorApp.controller('homecontroller', function ($scope, authenticationservice, $location, $rootScope, $cookieStore) {
-    
+    debugger;
     var user = $cookieStore.get('globals');
     if (typeof (user) != 'undefined') {
         $rootScope.loglabel = 'Sign Out';

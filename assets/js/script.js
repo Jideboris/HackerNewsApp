@@ -6,21 +6,26 @@ eAssessorApp.config(function ($routeProvider) {
 
     $routeProvider
       // route for the home page
-       .when("/", {
-           templateUrl: "/views/home.html",
-           controller: "logincontroller",
-       }).when('/home', {
-           templateUrl: "/views/home.html",
-           controller: "homecontroller",
-       })
-          .when("/studentfeedback", {
-              templateUrl: "/views/studentfeedback.html",
-              controller: "studentcontroller"
-          })
-         .when("/studentrecommendation", {
-             templateUrl: "/views/studentrecommendation.html",
-             controller: "studentcontroller"
-         })
+           .when("/", {
+               templateUrl: "/views/home.html",
+               controller: "logincontroller",
+           })
+           .when('/register', {
+               templateUrl: "/views/login/register.html",
+                controller: "homecontroller",
+            })
+            .when('/login', {
+                templateUrl: "/views/login/login.html",
+                controller: "logincontroller",
+            })
+            .when("/studentfeedback", {
+                templateUrl: "/views/studentfeedback.html",
+                controller: "studentcontroller"
+            })
+            .when("/studentrecommendation", {
+                templateUrl: "/views/studentrecommendation.html",
+                controller: "studentcontroller"
+            })
          .when("/studentweakareas", {
              templateUrl: "/views/studentweakareas.html",
              controller: "studentcontroller"
@@ -141,7 +146,6 @@ eAssessorApp.config(function ($routeProvider) {
             templateUrl: "/views/school/clientstudentregistration.html",
             controller: "clientregistrationcontroller"
         })
-
         .when("/addschoolbatchclientstudent", {
             templateUrl: "/views/school/addschoolbatchclientstudent.html",
             controller: "clientregistrationcontroller"
@@ -272,13 +276,10 @@ function run($rootScope, $location, $cookieStore, $http) {
         // redirect to login page if not logged in and trying to access a restricted page
         //  var restrictedPage = $.inArray($location.path(), ['/', '/register']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
-        if (!loggedIn) {
+        if (typeof (loggedIn) !== "undefined" && !loggedIn) {
             $location.path('/');
         }
-
     });
-
-
 }
 eAssessorApp.config(['$httpProvider', function ($httpProvider) {
     //initialize get if not there

@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     
@@ -72,7 +73,7 @@
     <script src="/directives/datepickerdirective.js"></script>
  
 </head>
-<body ng-controller="homecontroller" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body ng-controller="logincontroller" data-spy="scroll" data-target=".navbar" data-offset="50">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -105,6 +106,7 @@
                     <a class="navbar-brand" href="#admin_main">Admin</a>
                 </li>
                 <li>
+                    <!--<a href="#login"><p class="glyphicon glyphicon-log-in"></p> {{loglabel}}</a>-->
                     <a ng-click="logprocess(loglabel)"><p class="glyphicon glyphicon-log-in"></p> {{loglabel}}</a>
                 </li>
             </ul>
@@ -116,7 +118,7 @@
     </div>
 
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <p style="color:white">Copyright &copy; e-Assessor 2016</p>
+        <p style="color:white">Copyright &copy; e-Assessor 2017</p>
     </nav>
 </body>
 </html>

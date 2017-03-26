@@ -5,8 +5,17 @@
     menus.schools = schools;
     menus.students = students;
     menus.homemenus = homemenu;
+    menus.logincategory = logincategory;
     return menus;
-
+    function logincategory() {
+        return [
+               { id: "#admin", description: "admin" },
+               { id: "#school", description: "school" },
+               { id: "#student", description: "student" },
+               { id: "#parent", description: "parent" },
+               { id: "#teacher", description: "teacher" }
+        ]
+    }
     function homemenu() {
         return [
                 { id: "#firsttimer", description: "First timer?" },
