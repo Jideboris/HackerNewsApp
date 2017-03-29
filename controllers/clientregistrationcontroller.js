@@ -359,7 +359,6 @@
         //clientregistrationservice.downloadtemplate(authdata);
     }
     $scope.processmonitoringselectedlevel = function () {
-        debugger;
         let selmonitoringselectlevel = $scope.monitoringselectlevel;
         if (selmonitoringselectlevel !== "Please select...") {
             $scope.monitorselectedstudent = true;
@@ -561,6 +560,7 @@
     }
 
     $scope.addstudentschoolclient = function () {
+        debugger;
         if (studentsubjects.length > 0) {
             var fullname = $scope.fullname;
             var dateofbirth = $scope.dateofbirth;

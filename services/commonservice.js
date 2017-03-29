@@ -6,7 +6,21 @@
     common.categories = categories;
     common.session = session;
     common.reportcategory = reportcategory;
+    common.getpassschoolsessions = getpassschoolsessions;
     return common;
+    function getpassschoolsessions() {
+        let newsession = 0;
+        let schoolsessions = [];
+        let currentdate = new Date().getFullYear();
+        let startyear = currentdate - 5;
+        for (let i = 1; i <= 5; i++) {
+            newsession = startyear + 1;
+            let session = startyear + '/' + newsession;
+            startyear = newsession;
+            schoolsessions.push({ description: session });
+        }
+         return schoolsessions;
+    }
     function session() {
         return [{ id: "Current", description: "Current" },
                 { id: "Past", description: "Past" } ]

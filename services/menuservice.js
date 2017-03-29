@@ -6,7 +6,18 @@
     menus.students = students;
     menus.homemenus = homemenu;
     menus.logincategory = logincategory;
+    menus.parentmenus = parentmenus;
     return menus;
+    function parentmenus() {
+        return [
+            { id: "#parent", description: "News Letters", style: "list-group-item" },
+            { id: "#studentsreport", description: "View Reports", style: "list-group-item" },
+            { id: "#bookappointment", description: "Book Appointment", style: "list-group-item" },
+             { id: "#emailteacher", description: "Send Email", style: "list-group-item" },
+            { id: "#downloadreports", description: "Download Reports", style: "list-group-item" },
+            { id: "#comment", description: "Post Comments", style: "list-group-item" }
+        ]
+    }
     function logincategory() {
         return [
                { id: "#admin", description: "admin" },
@@ -19,7 +30,7 @@
     function homemenu() {
         return [
                 { id: "#firsttimer", description: "First timer?" },
-                { id: "#aboutus", description: "Find out about us?" },
+                { id: "#aboutus", description: "FIND OUT ABOUT US?" },
                 { id: "#ouraimandobjective", description: "Our aims and objectives?" },
                 { id: "#contactus", description: "Contact us?" },
                 { id: "#signup", description: "Register as a user?" },
@@ -47,10 +58,11 @@
             { id: "#parentsappointments", description: "Appointments", style: "list-group-item" },
             { id: "#teacheremail", description: "Emailing & SMS", style: "list-group-item" },
             { id: "#teachersquestion", description: "Add Questions", style: "list-group-item" },
-            //{ id: "#", description: "Approved Questions",style:"list-group-item" },
+            { id: "#uploadnewsletter", description: "Upload Newsletters",style:"list-group-item" },
             { id: "#teachersuggestion", description: "Add Suggestions", style: "list-group-item" },
             { id: "#teachingmethod", description: "Share Teaching Method", style: "list-group-item" },
-            //{ id: "#", description: "Summary Report",style:"list-group-item" },
+            { id: "#forwardrecommendation", description: "Recommendations", style: "list-group-item" },
+            { id: "#sujectteacherremarks", description: "Remarks and Endorsement", style: "list-group-item" }
         ]
     };
     function admins() {
@@ -79,7 +91,8 @@
            { id: "#schoolreport", description: "Administrative/Report", style: "list-group-item" },
            { id: "#schooldisciplinary", description: "Disciplinaries Records", style: "list-group-item" },
            { id: "#schoolpromotionrecords", description: "Promotions", style: "list-group-item" },
-        { id: "#schoolmonitor", description: "Monitoring Tools", style: "list-group-item" }
+           { id: "#schoolmonitor", description: "Monitoring Tools", style: "list-group-item" },
+           { id: "#schoolheadteacherremarks", description: "Remarks and Endorsement", style: "list-group-item" }
 
         ]
     }

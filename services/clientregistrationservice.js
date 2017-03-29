@@ -68,28 +68,32 @@
 
     this.addclientstudent = function (fullname, dateofbirth, selectedlevel, personalemail, parentemail, parentnumber,
                     studentregisteredsubjects, authdata) {
-        $http.post(path + '/addclientstudent' + '/' + authdata, {
-            fullname: fullname,
-            dateofbirth: dateofbirth,
-            selectedlevel: selectedlevel,
-            personalemail: personalemail,
-            parentemail: parentemail,
-            parentnumber: parentnumber,
-            studentregisteredsubjects: studentregisteredsubjects,
-            suspended: false
+        let quest = new FormData();
+        quest.append('fullname', fullname);
+        quest.append('dateofbirth', dateofbirth);
+        quest.append('selectedlevel', selectedlevel);
+        quest.append('personalemail', personalemail);
+        quest.append('parentemail', parentemail);
+        quest.append('parentnumber', parentnumber);
+        quest.append('studentregisteredsubjects', studentregisteredsubjects);
+        quest.append('authdata', authdata);
 
-        })
-        .success(function (response) {
+        return $http.post(path + '/addclientstudent', quest, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).success(function (response) {
             if (response !== '') {
-
+                debugger;
                 return $http.get(path + '/submit' + '/' + response.ops[0].schoolstudent.personalemail + '/' + response.ops[0].password + '/'
                    + response.ops[0].schoolstudent.fullname + '/' + response.ops[0].username + '/' + response.ops[0]._id).success(function (data) {
 
                    });
             }
-        }).error(function (response) {
+        })
+         .error(function (response) {
+             return response;
+         });
 
-        });
     };
     this.updateclientstudent = function (fullname, dateofbirth, selectedlevel, personalemail, parentemail, parentnumber,
                     studentregisteredsubjects, suspended, authdata, id) {

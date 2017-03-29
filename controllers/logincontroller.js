@@ -53,9 +53,11 @@
     
     $scope.categories = commonservice.categories();
     $scope.login = function login() {
+        debugger;
         $scope.dataLoading = true;
         $scope.isschool = false;
         authenticationservice.login($scope.category, $scope.identity, $scope.password).then(function (response) {
+            debugger;
             if (response.success) {
                 authenticationservice.setcredentials($scope.identity, $scope.password);
                 $scope.dataLoading = false;
@@ -87,6 +89,13 @@
                         $rootScope.student = { "visibility": "visible" };
                         $cookieStore.put('category', $scope.category);
                         $location.path('/studentreport');
+                        $scope.isschool = false;
+                        break;
+                    case 'parent':
+                        debugger;
+                        $rootScope.parent = { "visibility": "visible" };
+                        $cookieStore.put('category', $scope.category);
+                        $location.path('/parent');
                         $scope.isschool = false;
                         break;
                 }

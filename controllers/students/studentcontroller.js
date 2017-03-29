@@ -8,7 +8,7 @@
         $scope.selectedstudentsubcat = "Please select...";
     }
 
-    getpassschoolsessions();
+    $scope.passschoolsessions = commonservice.getpassschoolsessions();
     getstudentofferedsubjects();
     getsessions();
     getreportcategory();
@@ -48,19 +48,19 @@
             $scope.studentregsubjects = studentsubjects;
         });
     }
-    function getpassschoolsessions() {
-        let newsession = 0;
-        let schoolsessions = [];
-        let currentdate = new Date().getFullYear();
-        let startyear = currentdate - 5;
-        for (let i = 1; i <= 5; i++) {
-            newsession = startyear + 1;
-            let session = startyear + '/' + newsession;
-            startyear = newsession;
-            schoolsessions.push({ description: session });
-        }
-        $scope.passschoolsessions = schoolsessions;
-    }
+    //function getpassschoolsessions() {
+    //    let newsession = 0;
+    //    let schoolsessions = [];
+    //    let currentdate = new Date().getFullYear();
+    //    let startyear = currentdate - 5;
+    //    for (let i = 1; i <= 5; i++) {
+    //        newsession = startyear + 1;
+    //        let session = startyear + '/' + newsession;
+    //        startyear = newsession;
+    //        schoolsessions.push({ description: session });
+    //    }
+    //    $scope.passschoolsessions = schoolsessions;
+    //}
     $scope.studentmenus = menuservice.students().map(function (item) {
         let url = $location.url();
         let add = url.replace('/', '');

@@ -2,52 +2,48 @@
 eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootScope', 'userservice', function ($http, $cookieStore, $rootScope, userservice) {
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var service = {};
- 
+
     service.login = login;
     service.setcredentials = setcredentials;
     service.clearcredentials = clearcredentials;
     service.decode = decode;
     service.encode = encode;
-
     return service;
 
     function login(category, identity, password) {
-        
-          return userservice.getbyidentity(category, identity)
-               .then(function (response) {       
-                   if (response.length > 0) {
-                       if (response !== null && response[0].schoolpasscode === password || response[0].password === password) {
-                           response = { success: true };
-                       } else {
-                           response = { success: false, message: 'Username or password is incorrect or account is locked' };
-                       }
-                   }
-                   else {
-                       response = { success: false, message: 'Username or password is incorrect or account is locked' };
-                   }
-                   return response;
-               });
+        debugger;
+        return userservice.getbyidentity(category, identity)
+             .then(function (response) {
+                 debugger;
+                 if (response.length > 0) {
+                     if (response !== null && response[0].schoolpasscode === password
+                         || response[0].password === password || response[0].parentpassword === password) {
+                         response = { success: true };
+                     } else {
+                         response = { success: false, message: 'Username or password is incorrect or account is locked' };
+                     }
+                 }
+                 else {
+                     response = { success: false, message: 'Username or password is incorrect or account is locked' };
+                 }
+                 return response;
+             });
 
     }
-    
-    function setcredentials(identity, password) {
 
+    function setcredentials(identity, password) {
         var authdata = encode(identity + ':' + password);
         $rootScope.globals = {
             currentUser: {
                 identity: identity,
                 authdata: authdata
             }
-
         };
-
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
-
         return true;
     }
     function decode(input) {
-        
         var output = "";
         var chr1, chr2, chr3 = "";
         var enc1, enc2, enc3, enc4 = "";
@@ -89,7 +85,7 @@ eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootSc
         return output;
     }
     function encode(input) {
-       
+
         var output = "";
         var chr1, chr2, chr3 = "";
         var enc1, enc2, enc3, enc4 = "";
@@ -132,7 +128,7 @@ eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootSc
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
         encode: function (input) {
-            
+
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";

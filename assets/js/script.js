@@ -211,8 +211,8 @@ eAssessorApp.config(function ($routeProvider) {
             controller: "schoolregistrationcontroller"
         })
           .when("/parent", {
-              templateUrl: "/views/parentguardian.html",
-              controller: "parentguardiancontroller"
+              templateUrl: "/views/parent/newsletters.html",
+              controller: "parentcontroller"
           })
          .when("/admin/:id", {
              templateUrl: "/views/admin/addeditadmin.html",

@@ -8,7 +8,7 @@
                 <div ng-repeat="itemmenu in homemenus | orderBy: 'description' ">
                     <a href="#">
                         <div class="boxshadow">
-                            <div class="inner-button"><input type="button" class="btn btn-link" value="{{itemmenu.description}}" /></div>
+                            <div class="inner-button"><input type="button" class="btn btn-link" value="{{itemmenu.description| uppercase }}" /></div>
                         </div>
                     </a>
                 </div>
