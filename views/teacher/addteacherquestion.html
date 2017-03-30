@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-lg-5">
                             <br />
-                            <a ng-click="ProcessShowQuestion('V')">View Questions</a>
+                            <a ng-click="processshowquestion('V')">View Questions</a>
                         </div>
                     </div>
                 </div>
@@ -96,11 +96,11 @@
                                         </td>
                                         <td class="col-lg-2">
                                             <input type="date" class="form-control" name="input" ng-model="submittedquestiondatefrom"
-                                                   ng-change="filterWithDate()" datepicker />
+                                                   ng-change="filterwithdate()" datepicker />
                                         </td>
                                         <td class="col-lg-2"></td>
                                         <td class="col-lg-2">
-                                            <a ng-click="ProcessShowQuestion('A')">Add Question</a>
+                                            <a ng-click="processshowquestion('A')">Add Question</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -132,11 +132,11 @@
                                         <td>{{model.status}}</td>
                                         <td>{{model.dateadded}}</td>
                                         <td>
-                                            <a ng-click="LoadTeacherQuestion(model.id)">view attached</a>
+                                            <a ng-click="loadteacherquestion(model.id)">view attached</a>
                                         </td>
-                                        <td><a ng-click="EditQuestion(model.id)">Edit</a></td>
+                                        <td><a ng-click="editquestion(model.id)">Edit</a></td>
                                         <td>
-                                            <a ng-click="RemoveQuestion(model.id)">Delete</a>
+                                            <a ng-click="removequestion(model.id)">Delete</a>
                                         </td>
                                     </tr>
                                 </tbody>

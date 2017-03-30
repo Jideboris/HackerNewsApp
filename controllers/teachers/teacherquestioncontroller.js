@@ -10,7 +10,7 @@
     $scope.submittedquestiondatefrom = todaydate;
     $scope.hide = true;
     $scope.teacherlevels = getteachersubjects();
-    $scope.EditQuestion = function (id) {
+    $scope.editquestion = function (id) {
         teacherservice.getteacherquestionsbyid(id, authdata).then(function (response) {
             let output = response.data[0];
             $scope.questiontext = output.question;
@@ -21,7 +21,7 @@
 
         });
     }
-    $scope.ProcessShowQuestion = function (item) {
+    $scope.processshowquestion = function (item) {
         if (item === 'A') {
             $scope.hide = true;
         }
@@ -30,10 +30,10 @@
         }
     }
 
-    $scope.RemoveQuestion = function (id) {
+    $scope.removequestion = function (id) {
         teacherservice.deleteteacherquestions(id, authdata).then(function (response) {
             if (response.data == 'deleted') {
-                getTeacherQuestions();
+                getteacherquestions();
             }
         });
     }
@@ -43,7 +43,7 @@
         }
         return item;
     });
-    $scope.LoadTeacherQuestion = function (id) {
+    $scope.loadteacherquestion = function (id) {
         teacherservice.getteacherquestimagedetails(id, authdata).then(function (resp) {
             if (resp.data.hasattachment) {
                 $scope.message = "";
@@ -65,7 +65,7 @@
         });
     }
 
-    function getTeacherQuestions() {
+    function getteacherquestions() {
         let level = $scope.selectedlevel;
         let subject = $scope.selectedsubject;
         let selecteddate = $scope.submittedquestiondatefrom;
@@ -87,7 +87,7 @@
             });
         }
     }
-    $scope.filterWithDate = function () {
+    $scope.filterwithdate = function () {
         let selecteddate = $scope.submittedquestiondatefrom.trim().replace("/", "-").replace("/", "-");
         let level = $scope.selectedlevel;
         let subject = $scope.selectedsubject;
@@ -122,7 +122,7 @@
                 teacherservice.addteacherquestion(teacherquestionid, subject, level, questionimage, question, answer, topic, scale, authdata).then(function (data) {
                     if (data.data.insertedCount > 0) {
                         $scope.message = 'Question added successfully!!'
-                        getTeacherQuestions();
+                        getteacherquestions();
                     }
                     else {
                         $scope.message = 'Submission failed!!'
@@ -169,7 +169,7 @@
     }
     $scope.processsubjecttopics = function () {
         getprocessedtodayteachersubjecttest();
-        getTeacherQuestions();
+        getteacherquestions();
     }
     function sortcolumns(finaltopics) {
         let teachersubjecttopics = [];

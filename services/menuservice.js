@@ -58,7 +58,7 @@
             { id: "#parentsappointments", description: "Appointments", style: "list-group-item" },
             { id: "#teacheremail", description: "Emailing & SMS", style: "list-group-item" },
             { id: "#teachersquestion", description: "Add Questions", style: "list-group-item" },
-            { id: "#uploadnewsletter", description: "Upload Newsletters",style:"list-group-item" },
+            { id: "#uploadnewsletter", description: "Upload Newsletters", style: "list-group-item" },
             { id: "#teachersuggestion", description: "Add Suggestions", style: "list-group-item" },
             { id: "#teachingmethod", description: "Share Teaching Method", style: "list-group-item" },
             { id: "#forwardrecommendation", description: "Recommendations", style: "list-group-item" },

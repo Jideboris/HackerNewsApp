@@ -1,5 +1,5 @@
 ﻿eAssessorApp.controller('teachercontroller', function ($scope, $cookieStore,
-    teacherservice, menuservice, $sce) {
+    teacherservice, menuservice,$location, $sce) {
     $scope.message = '';
     buffer = [];
     reservouir = [];
@@ -14,11 +14,19 @@
     $scope.processteacherstudent = function () {
         getprocessteacherstudent();
     };
+    
     $scope.studentregistrationmenu = menuservice.assignmentsetup().map(function (item) {
-        if (item.id === "#teacherstudentregistration") {
+        let url = $location.url();
+        let add = url.replace('/', '');
+        let dataitem = item.id.replace('#', '');
+        if (dataitem === add) {
             item.style = "list-group-item active";
         }
         return item;
+        //if (item.id === "#teacherstudentregistration") {
+        //    item.style = "list-group-item active";
+        //}
+        //return item;
     });
     function getprocessteacherstudent() {
         var selectedlevel = $scope.selectedlevel.replace('/', '-');

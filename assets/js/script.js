@@ -62,6 +62,10 @@ eAssessorApp.config(function ($routeProvider) {
               templateUrl: "/views/studentregistration.html",
               controller: "studentregistrationcontroller"
           })
+          .when("/uploadnewsletter", {
+              templateUrl: "/views/teacher/uploadnewsletter.html",
+              controller: "teachercontroller"
+          })
           .when("/teacherstudentregistration", {
               templateUrl: "/views/teacher/clientteacherstudent.html",
               controller: "teachercontroller"

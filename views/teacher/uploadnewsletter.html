@@ -1,0 +1,81 @@
+﻿
+<div class="row content">
+    <div class="col-sm-2 col-md-2 sidenav">
+        <div class="list-group margin-b-3">
+            <div class="list-group margin-b-3">
+                <div ng-repeat="model in studentregistrationmenu">
+                    <a href="{{model.id}}" class="{{model.style}}">{{model.description}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 col-md-9 text-left">
+        <form class="frmReg form-horizontal" role="form" id="subscriptionForm">
+            <h4><b style="border-bottom:1px black solid">UPLOAD NEWSLETTERS</b></h4>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label for="level">Level:</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processsubjecttopics()"
+                            ng-options="item.description as item.description for item in teacherlevels">
+                        <option value="">-- Please select student level --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label" for="assignmentFile">Upload Newletter:</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="file" file-model="newsletterfile" class="form-control" />
+                </div>
+            </div>       
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label style="color:red">{{message}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4">
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+                    <input type="submit" value="Back" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 col-md-12">
+                    <label class="control-label" for="uploadedfile">Newsletters</label>
+                    <br />
+                    <br />
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Comment</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-model="selected" ng-repeat="model in todayteachersubjecttest | orderBy:'fullname'">
+                                    <td>{{$index + 1}}.</td>
+                                    <td>{{model.description}}</td>
+                                    <td>{{model.dateadded}}</td>
+                                    <td>{{model.comments}} </td>
+                                    <td>{{model.delete}} </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+           
+
+        </form>
+    </div>
+</div>
