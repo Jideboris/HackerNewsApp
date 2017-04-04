@@ -69,6 +69,25 @@
              return response;
          });
     }
+    this.addtodaynewsletters = function (title,level, message,file, authdata) {
+        let newletter = new FormData();
+        newletter.append('file', file);
+        newletter.append('level', level);
+        newletter.append('title', title);
+        newletter.append('authdata', authdata);
+        newletter.append('message', message);
+        debugger;
+        return $http.post(path + '/uploadnewsletter', newletter, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        })
+         .success(function (response) {
+             return response;
+         })
+         .error(function (response) {
+             return response;
+         });
+    }
     this.addtodayteachersubjectassignment = function (attendance, subject, level, file, assignmentdescription, authdata) {
         let assignment = new FormData();
         assignment.append('file', file);

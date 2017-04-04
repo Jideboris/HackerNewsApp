@@ -11,10 +11,8 @@ eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootSc
     return service;
 
     function login(category, identity, password) {
-        debugger;
         return userservice.getbyidentity(category, identity)
              .then(function (response) {
-                 debugger;
                  if (response.length > 0) {
                      if (response !== null && response[0].schoolpasscode === password
                          || response[0].password === password || response[0].parentpassword === password) {

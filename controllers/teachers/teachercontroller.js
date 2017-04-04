@@ -1,5 +1,5 @@
 ﻿eAssessorApp.controller('teachercontroller', function ($scope, $cookieStore,
-    teacherservice, menuservice,$location, $sce) {
+    teacherservice, menuservice, $location, $sce) {
     $scope.message = '';
     buffer = [];
     reservouir = [];
@@ -14,7 +14,16 @@
     $scope.processteacherstudent = function () {
         getprocessteacherstudent();
     };
-    
+    $scope.uploadnewletter = function () {
+        debugger;
+        let level = $scope.selectedlevel;
+        let file = $scope.newsletterfile;
+        let message = $scope.aboutnewsletter;
+        let title = $scope.newslettertitle;
+        teacherservice.addtodaynewsletters(title, level, message, file, authdata).then(function (response) {
+            debugger;
+        })
+    }
     $scope.studentregistrationmenu = menuservice.assignmentsetup().map(function (item) {
         let url = $location.url();
         let add = url.replace('/', '');
@@ -36,7 +45,7 @@
                     if (response.data.length == 0) {
                         $scope.schoolsubjectlevelstudents = preparedefaultschoolstudentsbysubjectandlevel(resall.data);
                     }
-                    else {                
+                    else {
                         $scope.schoolsubjectlevelstudents = prepareschoolstudentsbysubjectandlevel(response.data[0].registeredstudents);
                     }
                 })
@@ -110,7 +119,7 @@
         return prepareschoolstuduent;
     }
 
-    function getteachersubjects() { 
+    function getteachersubjects() {
         teacherservice.getschoolteachersubjects(authdata).then(function (response) {
             var output = prepareteachers(response);
             $scope.teachersubjects = output.teachsubjects;

@@ -18,7 +18,6 @@
     }
 
     function getbyidentity(category, identity) {
-        debugger;
         return $http.get(urlclientidentity + category + '/' + identity).then(handleSuccess, handleError('Error getting user by username'));
     }
 
