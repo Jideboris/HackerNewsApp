@@ -1,6 +1,6 @@
 // script.js
 path = 'http://localhost:3000'
-var eAssessorApp = angular.module('eAssessorApp', ['ngRoute', 'ngSanitize', 'ngCookies']);
+var eAssessorApp = angular.module('eAssessorApp', ['ngRoute', 'ngSanitize', 'ngCookies', '720kb.datepicker']);
 
 eAssessorApp.config(function ($routeProvider) {
 

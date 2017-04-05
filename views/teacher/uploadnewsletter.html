@@ -17,7 +17,7 @@
                     <label for="level">Level:</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" ng-model="selectedlevel"
+                    <select class="form-control" ng-model="selectedlevel" ng-change="processretrievingnewsletters()"
                             ng-options="item.description as item.description for item in teacherlevels">
                         <option value="">-- Please select student level --</option>
                     </select>
@@ -64,6 +64,10 @@
                 </div>
                 <div class="col-md-6">
                     <input type="text" value="{{searchitem}}" class="form-control" />
+                    <datepicker>
+                        <input ng-model="date" type="text" />
+                    </datepicker>
+
                 </div>
             </div>        
             <div class="form-group">
@@ -89,8 +93,12 @@
                                     <td>{{model.title}}</td>
                                     <td>{{model.message}}</td>
                                     <td>{{model.dateadded}}</td>
-                                    <td>{{model.view}} </td>
-                                    <td>{{model.delete}} </td>
+                                    <td>
+                                        <a ng-click="loadnewsletter(model.id)">view</a>
+                                    </td>
+                                    <td>
+                                        <a ng-click="removenewsletter(model.id)">delete</a>
+                                    </td>
                                 </tr>
 
                             </tbody>

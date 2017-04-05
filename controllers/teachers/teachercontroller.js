@@ -6,7 +6,7 @@
 
     var user = $cookieStore.get('globals');
     var authdata = user.currentUser.authdata;
-
+     
     $scope.teacherlevels = getteachersubjects();
     $scope.selectAll = function (it) {
         $scope.schoolsubjectlevelstudents = selectcheckboxes(it, $scope.schoolsubjectlevelstudents);
@@ -22,7 +22,24 @@
         let title = $scope.newslettertitle;
         teacherservice.addtodaynewsletters(title, level, message, file, authdata).then(function (response) {
             debugger;
+            getnewsletters(response);
         })
+    }
+    $scope.processretrievingnewsletters = function () {
+        return getnewsletters();
+    }
+    function getnewsletters() {
+        if (typeof (resp) != 'undefined' && resp != null) {
+            $scope.newsletters = resp;
+        }
+        else {
+            let level = $scope.selectedlevel;
+            if (typeof (level) != 'undefined') {
+                teacherservice.gettodaynewsletters(level, authdata).then(function (response) {
+                    $scope.newsletters = response.data;
+                })
+            }
+        }
     }
     $scope.studentregistrationmenu = menuservice.assignmentsetup().map(function (item) {
         let url = $location.url();

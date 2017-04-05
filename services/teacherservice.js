@@ -27,8 +27,14 @@
             return response.data;
         });
     };
+
     this.getteachersuggestions = function (authdata) {
         return $http.get(path + '/retrieveteachersuggestion' + '/' + authdata).success(function (response) {
+            return response.data;
+        });
+    }
+    this.gettodaynewsletters = function (level, authdata) {
+        return $http.get(path + '/retrieveteachertodaynewsletters' + '/' + level + '/' + authdata).success(function (response) {
             return response.data;
         });
     }
@@ -69,7 +75,7 @@
              return response;
          });
     }
-    this.addtodaynewsletters = function (title,level, message,file, authdata) {
+    this.addtodaynewsletters = function (title, level, message, file, authdata) {
         let newletter = new FormData();
         newletter.append('file', file);
         newletter.append('level', level);
@@ -96,7 +102,7 @@
         assignment.append('level', level);
         assignment.append('authdata', authdata);
         assignment.append('assignmentdescription', assignmentdescription);
-
+        debugger;
         return $http.post(path + '/uploadassignment', assignment, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
