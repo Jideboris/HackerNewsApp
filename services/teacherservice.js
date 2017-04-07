@@ -33,6 +33,11 @@
             return response.data;
         });
     }
+    this.getnewslettersbydate = function (date, authdata) {
+        return $http.get(path + '/retrievenewslettersbydate' + '/' + date + '/' + authdata).success(function (response) {
+            return response.data;
+        });
+    }
     this.gettodaynewsletters = function (level, authdata) {
         return $http.get(path + '/retrieveteachertodaynewsletters' + '/' + level + '/' + authdata).success(function (response) {
             return response.data;

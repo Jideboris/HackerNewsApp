@@ -3,10 +3,24 @@
     $scope.message = '';
     buffer = [];
     reservouir = [];
-
+    $scope.recordsnotfound = true;
     var user = $cookieStore.get('globals');
     var authdata = user.currentUser.authdata;
-     
+    $scope.findnewsletters = function () {
+        let app = "/"
+        let re = "/" + app + "/gi";
+        let date = $scope.searchitem.replace(re, '-');
+        debugger;
+        teacherservice.getnewslettersbydate(date, authdata).then(function (response) {
+            if (response.data != '' && response.data != null) {
+                $scope.newsletters = response.data;
+                $scope.recordsnotfound = false;
+            }
+            else {
+                $scope.recordsnotfound = true;
+            }
+        })
+    }
     $scope.teacherlevels = getteachersubjects();
     $scope.selectAll = function (it) {
         $scope.schoolsubjectlevelstudents = selectcheckboxes(it, $scope.schoolsubjectlevelstudents);

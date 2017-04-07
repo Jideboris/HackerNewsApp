@@ -30,7 +30,7 @@ datepicker, .datepicker, [datepicker],
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  float: left;
+  /*float: left;*/
   clear: right;
   position: relative;
 }
@@ -59,7 +59,7 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header {
   text-align: center;
   font-size: 15px;
-  line-height: 40px;
+  /*line-height: 40px;*/
 }
 ._720kb-datepicker-calendar-header:nth-child(odd) {
   background: #138EFA;
@@ -128,7 +128,7 @@ datepicker, .datepicker, [datepicker],
   background: rgba(255, 255, 255, 0.45);
 }
 ._720kb-datepicker-calendar-month {
-  color:#fff;
+  color:#000;
 }
 ._720kb-datepicker-calendar-month span {
   font-size: 13px;
