@@ -4,22 +4,29 @@
     buffer = [];
     reservouir = [];
     $scope.recordsnotfound = true;
+
+
     var user = $cookieStore.get('globals');
     var authdata = user.currentUser.authdata;
     $scope.findnewsletters = function () {
-        let app = "/"
-        let re = "/" + app + "/gi";
-        let date = $scope.searchitem.replace(re, '-');
-        debugger;
-        teacherservice.getnewslettersbydate(date, authdata).then(function (response) {
-            if (response.data != '' && response.data != null) {
-                $scope.newsletters = response.data;
-                $scope.recordsnotfound = false;
-            }
-            else {
-                $scope.recordsnotfound = true;
-            }
-        })
+        let level = $scope.selectedlevel;
+        if (typeof (level) != 'undefined') {
+            $scope.message = "";
+            let date = $scope.searchitem.split('/').join('-');
+            teacherservice.getnewslettersbydate(level, date, authdata).then(function (response) {
+                if (response.data != '' && response.data != null) {
+                    $scope.newsletters = response.data;
+                    $scope.recordsnotfound = false;
+                }
+                else {
+                    $scope.newsletters = null;
+                    $scope.recordsnotfound = true;
+                }
+            })
+        }
+        else {
+            $scope.message = "please select level!!";
+        }
     }
     $scope.teacherlevels = getteachersubjects();
     $scope.selectAll = function (it) {
@@ -29,13 +36,11 @@
         getprocessteacherstudent();
     };
     $scope.uploadnewletter = function () {
-        debugger;
         let level = $scope.selectedlevel;
         let file = $scope.newsletterfile;
         let message = $scope.aboutnewsletter;
         let title = $scope.newslettertitle;
         teacherservice.addtodaynewsletters(title, level, message, file, authdata).then(function (response) {
-            debugger;
             getnewsletters(response);
         })
     }
@@ -50,7 +55,14 @@
             let level = $scope.selectedlevel;
             if (typeof (level) != 'undefined') {
                 teacherservice.gettodaynewsletters(level, authdata).then(function (response) {
-                    $scope.newsletters = response.data;
+                    if (response.data != '' && response.data != null) {
+                        $scope.newsletters = response.data;
+                        $scope.recordsnotfound = false;
+                    }
+                    else {
+                        $scope.newsletters = null;
+                        $scope.recordsnotfound = true;
+                    }
                 })
             }
         }

@@ -33,8 +33,8 @@
             return response.data;
         });
     }
-    this.getnewslettersbydate = function (date, authdata) {
-        return $http.get(path + '/retrievenewslettersbydate' + '/' + date + '/' + authdata).success(function (response) {
+    this.getnewslettersbydate = function (level, date, authdata) {
+        return $http.get(path + '/retrievenewslettersbydate' + '/' + level + '/' + date + '/' + authdata).success(function (response) {
             return response.data;
         });
     }
