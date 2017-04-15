@@ -1,5 +1,6 @@
 ﻿
-eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootScope', 'userservice', function ($http, $cookieStore, $rootScope, userservice) {
+eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootScope', 'userservice',
+    function ($http, $cookieStore, $rootScope, userservice) {
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var service = {};
 
@@ -83,7 +84,6 @@ eAssessorApp.service('authenticationservice', ['$http', '$cookieStore', '$rootSc
         return output;
     }
     function encode(input) {
-
         var output = "";
         var chr1, chr2, chr3 = "";
         var enc1, enc2, enc3, enc4 = "";

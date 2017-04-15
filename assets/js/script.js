@@ -1,238 +1,404 @@
 // script.js
-path = 'http://localhost:3000'
+//path = 'https://evaluatorapi.herokuapp.com/api/v1';
+path = 'http://localhost:3000/api/v1';
+pathlog = 'http://localhost:3000';
 var eAssessorApp = angular.module('eAssessorApp', ['ngRoute', 'ngSanitize', 'ngCookies', '720kb.datepicker']);
 
-eAssessorApp.config(function ($routeProvider) {
-
+eAssessorApp.config(function ($routeProvider, $httpProvider) {
+    $httpProvider.interceptors.push('tokeninterceptor');
     $routeProvider
       // route for the home page
            .when("/", {
                templateUrl: "/views/home.html",
                controller: "logincontroller",
+               access: {
+                   requiredLogin: false
+               }
            })
            .when('/register', {
                templateUrl: "/views/login/register.html",
-                controller: "homecontroller",
-            })
+               controller: "homecontroller",
+               access: {
+                   requiredLogin: false
+               }
+           })
             .when('/login', {
                 templateUrl: "/views/login/login.html",
                 controller: "logincontroller",
+                access: {
+                    requiredLogin: false
+                }
             })
             .when("/studentfeedback", {
                 templateUrl: "/views/studentfeedback.html",
-                controller: "studentcontroller"
+                controller: "studentcontroller",
+                access: {
+                    requiredLogin: true
+                }
             })
             .when("/studentrecommendation", {
                 templateUrl: "/views/studentrecommendation.html",
-                controller: "studentcontroller"
+                controller: "studentcontroller",
+                access: {
+                    requiredLogin: true
+                }
             })
          .when("/studentweakareas", {
              templateUrl: "/views/studentweakareas.html",
-             controller: "studentcontroller"
+             controller: "studentcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/studentreportanalysis", {
              templateUrl: "/views/studentcomparativeanalysis.html",
-             controller: "studentcontroller"
+             controller: "studentcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/studentreport", {
              templateUrl: "/views/student/student.html",
-             controller: "studentcontroller"
+             controller: "studentcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
           .when("/comparativereport", {
               templateUrl: "/views/student/studentcomparativeanalysis.html",
-              controller: "studentcontroller"
+              controller: "studentcontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
         .when("/progresstracker", {
             templateUrl: "/views/student/studentprogresstracker.html",
-            controller: "studentcontroller"
+            controller: "studentcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
          .when("/addquestion/:id", {
              templateUrl: "/views/admin/addeditquestion.html",
-             controller: "questioncontroller"
+             controller: "questioncontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/download/:level/:subject/:id", {
              templateUrl: "/views/templates/pdfdownload.html",
-             controller: "pdfcontroller"
+             controller: "pdfcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/question", {
              templateUrl: "/views/admin/question.html",
-             controller: "questioncontroller"
+             controller: "questioncontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
           .when("/registration", {
               templateUrl: "/views/studentregistration.html",
-              controller: "studentregistrationcontroller"
+              controller: "studentregistrationcontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
           .when("/uploadnewsletter", {
               templateUrl: "/views/teacher/uploadnewsletter.html",
-              controller: "teachercontroller"
+              controller: "teachercontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
           .when("/teacherstudentregistration", {
               templateUrl: "/views/teacher/clientteacherstudent.html",
-              controller: "teachercontroller"
+              controller: "teachercontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
         .when("/teachingmethod", {
             templateUrl: "/views/teacher/addteachingmethod.html",
-            controller: "teachingmethodcontroller"
+            controller: "teachingmethodcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/teacheremail", {
             templateUrl: "/views/teacher/teacheremailing.html",
-            controller: "teacheremailingcontroller"
+            controller: "teacheremailingcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/teachersuggestion", {
             templateUrl: "/views/teacher/addteachersuggestion.html",
-            controller: "teachersuggestioncontroller"
+            controller: "teachersuggestioncontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/teachersquestion", {
             templateUrl: "/views/teacher/addteacherquestion.html",
-            controller: "teacherquestioncontroller"
+            controller: "teacherquestioncontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/teacherstudentattendanceregister", {
               templateUrl: "/views/teacher/teacherstudentattendanceregister.html",
-              controller: "teacherattendancecontroller"
+              controller: "teacherattendancecontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
          .when("/teacher", {
              templateUrl: "/views/teacher/teachertestsetup.html",
-             controller: "teachertestsetupcontroller"
+             controller: "teachertestsetupcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/studenttestscores", {
             templateUrl: "/views/teacher/teacherstudentscores.html",
-            controller: "teacherstudentscorecontroller"
+            controller: "teacherstudentscorecontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/teacherstudentassignment", {
             templateUrl: "/views/teacher/teacherstudentassignmentsetup.html",
-            controller: "teacherassignmentcontroller"
+            controller: "teacherassignmentcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/addquestion", {
             templateUrl: "/views/admin/addeditquestion.html",
-            controller: "questioncontroller"
+            controller: "questioncontroller",
+            access: {
+                requiredLogin: true
+            }
         })
          .when("/topic", {
              templateUrl: "/views/admin/topic.html",
-             controller: "topiccontroller"
+             controller: "topiccontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/addtopic", {
             templateUrl: "/views/admin/addedittopic.html",
-            controller: "topiccontroller"
+            controller: "topiccontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/addtopic/:id", {
               templateUrl: "/views/admin/addedittopic.html",
-              controller: "topiccontroller"
+              controller: "topiccontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
-        //.when("/location", {
-        //    templateUrl: "/views/location.html",
-        //    controller: "locationcontroller"
-        //})
        .when("/addlocation", {
            templateUrl: "/views/admin/addeditlocation.html",
-           controller: "locationcontroller"
+           controller: "locationcontroller",
+           access: {
+               requiredLogin: true
+           }
        })
          .when("/addlocation/:id", {
              templateUrl: "/views/admin/addeditlocation.html",
-             controller: "locationcontroller"
+             controller: "locationcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/subject", {
             templateUrl: "/views/admin/subject.html",
-            controller: "subjectcontroller"
+            controller: "subjectcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
          .when("/addsubject", {
              templateUrl: "/views/admin/addeditsubject.html",
-             controller: "subjectcontroller"
+             controller: "subjectcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/addsubject/:id", {
              templateUrl: "/views/admin/addeditsubject.html",
-             controller: "subjectcontroller"
+             controller: "subjectcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
          .when("/access", {
              templateUrl: "/views/access.html",
-             controller: "aboutcontroller"
+             controller: "aboutcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/schoolclientstudent", {
             templateUrl: "/views/school/clientstudentregistration.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/addschoolbatchclientstudent", {
             templateUrl: "/views/school/addschoolbatchclientstudent.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/addschoolclientstudent", {
               templateUrl: "/views/school/addschoolclientstudent.html",
-              controller: "clientregistrationcontroller"
+              controller: "clientregistrationcontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
          .when("/addschoolclientstudent/:id", {
              templateUrl: "/views/school/addschoolclientstudent.html",
-             controller: "clientregistrationcontroller"
+             controller: "clientregistrationcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
            .when("/addschoolclientsteacher", {
                templateUrl: "/views/school/addschoolclientsteacher.html",
-               controller: "clientregistrationcontroller"
+               controller: "clientregistrationcontroller",
+               access: {
+                   requiredLogin: true
+               }
            })
          .when("/addschoolclientsteacher/:id", {
              templateUrl: "/views/school/addschoolclientsteacher.html",
-             controller: "clientregistrationcontroller"
+             controller: "clientregistrationcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/addschoolclientstudentdesciplinerecord", {
             templateUrl: "/views/school/addclientdisciplinaryrecord.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/addschoolclientstudentdesciplinerecord/:disciplinerecordid", {
             templateUrl: "/views/school/addclientdisciplinaryrecord.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/schooldisciplinary", {
             templateUrl: "/views/school/clientdisciplinaryrecord.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/schoolpromotionrecords", {
             templateUrl: "/views/school/promotestudents.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
          .when("/schoolreport", {
              templateUrl: "/views/school/schoolreports.html",
-             controller: "clientregistrationcontroller"
+             controller: "clientregistrationcontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/schoolmonitor", {
             templateUrl: "/views/school/schoolmonitor.html",
-            controller: "clientregistrationcontroller"
+            controller: "clientregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/schoolclientteacher", {
               templateUrl: "/views/school/clientteacherregistration.html",
-              controller: "clientregistrationcontroller"
+              controller: "clientregistrationcontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
            .when("/school", {
                templateUrl: "/views/admin/schoolregistration.html",
-               controller: "schoolregistrationcontroller"
+               controller: "schoolregistrationcontroller",
+               access: {
+                   requiredLogin: true
+               }
            })
         .when("/school/:id", {
             templateUrl: "/views/admin/addschoolregistration.html",
-            controller: "schoolregistrationcontroller"
+            controller: "schoolregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/schools", {
             templateUrl: "/views/admin/schools.html",
-            controller: "schoolregistrationcontroller"
+            controller: "schoolregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/addschool", {
             templateUrl: "/views/admin/addschoolregistration.html",
-            controller: "schoolregistrationcontroller"
+            controller: "schoolregistrationcontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/parent", {
               templateUrl: "/views/parent/newsletters.html",
-              controller: "parentcontroller"
+              controller: "parentcontroller",
+              access: {
+                  requiredLogin: true
+              }
           })
          .when("/admin/:id", {
              templateUrl: "/views/admin/addeditadmin.html",
-             controller: "admincontroller"
+             controller: "admincontroller",
+             access: {
+                 requiredLogin: true
+             }
          })
         .when("/addadmin", {
             templateUrl: "/views/admin/addeditadmin.html",
-            controller: "admincontroller"
+            controller: "admincontroller",
+            access: {
+                requiredLogin: true
+            }
         })
         .when("/adminsetup", {
             templateUrl: "/views/admin/adminsetup.html",
-            controller: "admincontroller"
+            controller: "admincontroller",
+            access: {
+                requiredLogin: true
+            }
         })
           .when("/admin_main", {
               templateUrl: "/views/admin/admin.html",
-              controller: "admincontroller"
+              controller: "admincontroller",
+              access: {
+                  requiredLogin: true
+              }
           }).otherwise({ redirectTo: '/' });
 });
 eAssessorApp.run(function ($rootScope, $templateCache) {
@@ -285,9 +451,31 @@ function run($rootScope, $location, $cookieStore, $http) {
         }
     });
 }
+eAssessorApp.run(function ($rootScope, $window, $location, authenticationfactory) {
+    // when the page refreshes, check if the user is already logged in
+    authenticationfactory.check();
+    $rootScope.$on("$routeChangeStart", function (event, nextRoute, currentRoute) {
+        if ((nextRoute.access && nextRoute.access.requiredLogin) && !authenticationfactory.isLogged) {
+            $location.path("/login");
+        } else {
+            // check if user object exists else fetch it. This is incase of a page refresh
+            if (!authenticationfactory.user) authenticationfactory.user = $window.sessionStorage.user;
+            if (!authenticationfactory.userRole) authenticationfactory.userRole = $window.sessionStorage.userRole;
+        }
+    });
+
+    $rootScope.$on('$routeChangeSuccess', function (event, nextRoute, currentRoute) {
+        $rootScope.showMenu = authenticationfactory.isLogged;
+        $rootScope.role = authenticationfactory.userRole;
+        // if the user is already logged in, take him to the home page
+        if (authenticationfactory.isLogged == true && $location.path() == '/login') {
+            $location.path('/');
+        }
+    });
+});
 eAssessorApp.config(['$httpProvider', function ($httpProvider) {
     //initialize get if not there
-    $httpProvider.defaults.cache = false;
+    $httpProvider.defaults.cache = true;
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
     }

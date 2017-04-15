@@ -4,8 +4,6 @@
     buffer = [];
     reservouir = [];
     $scope.recordsnotfound = true;
-
-
     var user = $cookieStore.get('globals');
     var authdata = user.currentUser.authdata;
     $scope.findnewsletters = function () {
@@ -75,10 +73,6 @@
             item.style = "list-group-item active";
         }
         return item;
-        //if (item.id === "#teacherstudentregistration") {
-        //    item.style = "list-group-item active";
-        //}
-        //return item;
     });
     function getprocessteacherstudent() {
         var selectedlevel = $scope.selectedlevel.replace('/', '-');

@@ -1,10 +1,9 @@
-﻿
-eAssessorApp.service('subjectservice', ['$http', function ($http) {
-    var urlsubject = 'http://localhost:3000/subjects';
-    var urlgetbyid = 'http://localhost:3000/subjectbyid';
-    var urladdsubject = 'http://localhost:3000/addsubject';
-    var urlupdate = 'http://localhost:3000/updatesubject';
-    var urldelete = 'http://localhost:3000/deletesubject';
+﻿eAssessorApp.service('subjectservice', ['$http', function ($http) {
+    var urlsubject = path + '/subjects';
+    var urlgetbyid = path + '/subjectbyid';
+    var urladdsubject = path + '/addsubject';
+    var urlupdate = path + '/updatesubject';
+    var urldelete = path + '/deletesubject';
 
     this.addsubject = function (desc, level) {
         return $http.post(urladdsubject, { description: desc, level: level }).success(function (data) {

@@ -1,11 +1,11 @@
 ﻿
 eAssessorApp.service('locationservice', ['$http', function ($http) {
-    var urladd = 'http://localhost:3000/addlocation';
-    var urldelete = 'http://localhost:3000/deletelocation';
-    var urlget = 'http://localhost:3000/locations';
-    var urlgetbyid = 'http://localhost:3000/locationbyid';
-    var urlupdate = 'http://localhost:3000/updatelocation';
-    
+    var urladd = path + '/addlocation';
+    var urldelete = path + '/deletelocation';
+    var urlget = path + '/locations';
+    var urlgetbyid = path + '/locationbyid';
+    var urlupdate = path + '/updatelocation';
+
     this.addLocation = function (data) {
         $http.post(urladd, {
             description: data
@@ -21,9 +21,9 @@ eAssessorApp.service('locationservice', ['$http', function ($http) {
         });
     };
     this.updateLocation = function (desc, id) {
-        return $http.put(urlupdate + '/' + id, { description: desc }).success(function(data) {
-      }).error(function(data) {
-      });
+        return $http.put(urlupdate + '/' + id, { description: desc }).success(function (data) {
+        }).error(function (data) {
+        });
     }
     this.getLocationsById = function (id) {
         return $http.get(urlgetbyid + '/' + id).success(function (data) {

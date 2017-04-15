@@ -1,5 +1,4 @@
-﻿
-eAssessorApp.service('topicservice', ['$http', function ($http) {
+﻿eAssessorApp.service('topicservice', ['$http', function ($http) {
     this.getlevelsubjecttopics = function (selectedsubject, selectedlevel) {
         return $http.get(path + '/topicsbysubject' + '/' + selectedsubject + '/' + selectedlevel).success(function (response) {
             return response.data;

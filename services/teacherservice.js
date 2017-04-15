@@ -1,7 +1,4 @@
 ﻿eAssessorApp.service('teacherservice', ['$http', function ($http) {
-    var urlupadateregistersubjectlevelstudents = 'http://localhost:3000/upadateregistersubjectlevelstudents';
-
-
     this.getallassignmentsdetails = function (selectedlevel, selectedsubject, authdata) {
         return $http.post(path + '/retrieveallassignmentsdetails' + '/' + selectedlevel + '/' + selectedsubject + '/' + authdata).success(function (response) {
             return response;

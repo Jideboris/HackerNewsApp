@@ -1,17 +1,17 @@
 ﻿
 eAssessorApp.service('questionservice', ['$http', function ($http) {
-    var urlquestionavatarbyid = 'http://localhost:3000/questionavatarbyid';
-    var urladdlackedskillsets = 'http://localhost:3000/addlackedskillset';
-    var urlquestioncount = 'http://localhost:3000/questioncount';
-    var urllackedskillset = 'http://localhost:3000/lackedskillset';
-    var urldeletelackedskillset = 'http://localhost:3000/deletelackedskillset';
-    var urladd = 'http://localhost:3000/addquestion';
-    var urlupdate = 'http://localhost:3000/updatequestion';
-    var uploadUrl = "http://localhost:3000/fileUpload";
-    var updateuploaded = "http://localhost:3000/updatefileuploaded";
-    var urlallquestions = "http://localhost:3000/questions";
-    var urldeletequestions = "http://localhost:3000/deletequestion";
-    var urlgetbyid = 'http://localhost:3000/questionbyid';
+    var urlquestionavatarbyid = path + '/questionavatarbyid';
+    var urladdlackedskillsets = path + '/addlackedskillset';
+    var urlquestioncount = path + '/questioncount';
+    var urllackedskillset = path + '/lackedskillset';
+    var urldeletelackedskillset = path + '/deletelackedskillset';
+    var urladd = path + '/addquestion';
+    var urlupdate = path + '/updatequestion';
+    var uploadUrl = path + '/fileUpload';
+    var updateuploaded = path + '/updatefileuploaded';
+    var urlallquestions = path + '/questions';
+    var urldeletequestions = path + '/deletequestion';
+    var urlgetbyid = path + '/questionbyid';
 
     this.uploadfile = function (file, questno) {
         var fd = new FormData();
@@ -36,7 +36,7 @@ eAssessorApp.service('questionservice', ['$http', function ($http) {
             headers: { 'Content-Type': undefined }
         })
         .success(function (response) {
-            
+
         })
         .error(function (response) {
         });
@@ -82,9 +82,9 @@ eAssessorApp.service('questionservice', ['$http', function ($http) {
             mathematicalskills: mathematicalskills
 
         }).success(function (response) {
-            
+
         }).error(function (response) {
-            
+
         });
     };
     this.updatequestion = function (questionformat, questionnature, questionlevel, questiontypepractice, selectedsubject, selectedtopic,

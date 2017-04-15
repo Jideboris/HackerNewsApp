@@ -1,7 +1,5 @@
-﻿
-eAssessorApp.service('userservice', ['$http', function ($http) {
-    var service = {};
- 
+﻿eAssessorApp.service('userservice', ['$http', function ($http) {
+    var service = {}; 
     service.GetAll = GetAll;
     service.GetById = GetById;
     service.GetByUsername = GetByUsername;

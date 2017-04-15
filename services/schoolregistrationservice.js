@@ -1,16 +1,14 @@
 ﻿eAssessorApp.service('schoolregistrationservice', ['$http', function ($http) {
-
-    var urlschool = 'http://localhost:3000/schools';
-    var urlsendmail = 'http://localhost:3000/submit';
-    var urladdschool = 'http://localhost:3000/addschool';
-    var urlupdate = 'http://localhost:3000/updateschool';
-    var urldelete = 'http://localhost:3000/deleteschool';
-    var urlschoolbyid = 'http://localhost:3000/schoolbyid';
-    var urlschoolaccount = 'http://localhost:3000/addschoolaccount';
-    var urlallschoolaccount = 'http://localhost:3000/allschools';
-    var urlupdateaccount = 'http://localhost:3000/updateaccount';
-    var urlallschoolsbylock = 'http://localhost:3000/allschoolsbylock';
-
+    var urlschool = path + '/schools';
+    var urlsendmail = path + '/submit';
+    var urladdschool = path + '/addschool';
+    var urlupdate = path + '/updateschool';
+    var urldelete = path + '/deleteschool';
+    var urlschoolbyid = path + '/schoolbyid';
+    var urlschoolaccount = path + '/addschoolaccount';
+    var urlallschoolaccount = path + '/allschools';
+    var urlupdateaccount = path + '/updateaccount';
+    var urlallschoolsbylock = path + '/allschoolsbylock';
 
     this.addschoolaccount = function (contactemailadmin, schoolpasscode, registeredname, regnumber, license) {
         return $http.get(urlschoolaccount + '/' + contactemailadmin + '/' + schoolpasscode + '/'
@@ -59,7 +57,7 @@
 
     this.updateschool = function (ceofullname, schooldescription, registeredname, locationaddress, regnumber, contactemailadmin,
         contacttelephoneadmin, websiteurl, logofile, brandcolor, schoolpasscode, locked, id) {
-        
+
         var fd = new FormData();
         fd.append('file', logofile);
         fd.append('id', id);

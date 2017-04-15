@@ -1,13 +1,12 @@
-﻿
-eAssessorApp.service('adminservice', ['$http', function ($http) {
-    var urladd = 'http://localhost:3000/addadmin';
-    var urldelete = 'http://localhost:3000/deleteadmin';
-    var urlget = 'http://localhost:3000/admins';
-    var urlgetbyid = 'http://localhost:3000/adminbyid';
-    var urlupdate = 'http://localhost:3000/updateadmin';
+﻿eAssessorApp.service('adminservice', ['$http', function ($http) {
+    var urladd = path + '/addadmin';
+    var urldelete = path + '/deleteadmin';
+    var urlget = path + '/admins';
+    var urlgetbyid = path + '/adminbyid';
+    var urlupdate = path + '/updateadmin';
 
     this.addadmin = function (firstname, lastname, email, username, password) {
-      
+
         $http.post(urladd, {
             firstname: firstname,
             lastname: lastname,
@@ -16,7 +15,7 @@ eAssessorApp.service('adminservice', ['$http', function ($http) {
             password: password,
             locked: false
 
-        }).success(function (response) {  }).error(function (response) { });
+        }).success(function (response) { }).error(function (response) { });
     };
     this.deleteadmin = function (id) {
         return $http.delete(urldelete + '/' + id).success(function (data) { }).error(function (data) { });
@@ -27,8 +26,8 @@ eAssessorApp.service('adminservice', ['$http', function ($http) {
             return data;
         });
     };
-    this.updateadmin = function (firstname, lastname, email, username, password, locked,id) {
-          return $http.put(urlupdate + '/' + id, {
+    this.updateadmin = function (firstname, lastname, email, username, password, locked, id) {
+        return $http.put(urlupdate + '/' + id, {
             firstname: firstname,
             lastname: lastname,
             email: email,
@@ -36,7 +35,7 @@ eAssessorApp.service('adminservice', ['$http', function ($http) {
             password: password,
             locked: locked
         }).success(function (data) {
-            
+
         }).error(function (data) {
         });
     }
