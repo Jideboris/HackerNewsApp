@@ -21,7 +21,6 @@ eAssessorApp.factory('userauthfactory', function ($window, $location, $http, aut
             assign.append('username', username);
             assign.append('password', password);
             assign.append('category', category);
-             
             return $http.post(pathlog + '/login', assign, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }

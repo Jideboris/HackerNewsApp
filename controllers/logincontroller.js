@@ -123,6 +123,7 @@
 
 
             }).error(function (status) {
+                debugger;
                 $scope.message = 'Oops something went wrong!';
                 $scope.dataLoading = false;
 

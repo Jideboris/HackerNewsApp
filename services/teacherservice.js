@@ -40,6 +40,12 @@
             return response.data;
         });
     }
+    this.getnewsletter = function (level, newsid, authdata) {
+        debugger;
+        return $http.get(path + '/retrievenewsletter/' + level + '/' + newsid + '/' + authdata).success(function (response) {
+            return response.data;
+        });
+    }
     this.addteachingmethod = function (teachingmethodid, subject, level, topic, teachingmethodattachment, teachingmethodtext, authdata) {
         let quest = new FormData();
         quest.append('teachingmethodid', teachingmethodid);

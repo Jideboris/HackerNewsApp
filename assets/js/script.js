@@ -2,6 +2,7 @@
 //path = 'https://evaluatorapi.herokuapp.com/api/v1';
 path = 'http://localhost:3000/api/v1';
 pathlog = 'http://localhost:3000';
+//pathlog = 'https://evaluatorapi.herokuapp.com';
 var eAssessorApp = angular.module('eAssessorApp', ['ngRoute', 'ngSanitize', 'ngCookies', '720kb.datepicker']);
 
 eAssessorApp.config(function ($routeProvider, $httpProvider) {

@@ -11,7 +11,9 @@
         if (typeof (level) != 'undefined') {
             $scope.message = "";
             let date = $scope.searchitem.split('/').join('-');
+            debugger;
             teacherservice.getnewslettersbydate(level, date, authdata).then(function (response) {
+                debugger;
                 if (response.data != '' && response.data != null) {
                     $scope.newsletters = response.data;
                     $scope.recordsnotfound = false;
@@ -33,19 +35,35 @@
     $scope.processteacherstudent = function () {
         getprocessteacherstudent();
     };
+    $scope.loadnewsletter = function (newsid) {
+        let level = $scope.selectedlevel;
+        teacherservice.getnewsletter(level, newsid, authdata).then(function (response) {
+            debugger;
+            let blob = new Blob(([response.data.image]), { type: response.data.imageType });
+            if (navigator.appVersion.toString().indexOf('.NET') > 0)
+                window.navigator.msSaveBlob(blob, response.data.filename);
+            else {
+                var link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+                link.href = URL.createObjectURL(blob);
+                link.download = response.data.filename;
+                link.click();
+            }
+        })
+    }
+
     $scope.uploadnewletter = function () {
         let level = $scope.selectedlevel;
         let file = $scope.newsletterfile;
         let message = $scope.aboutnewsletter;
         let title = $scope.newslettertitle;
         teacherservice.addtodaynewsletters(title, level, message, file, authdata).then(function (response) {
-            getnewsletters(response);
+            getnewsletters(response.data);
         })
     }
     $scope.processretrievingnewsletters = function () {
-        return getnewsletters();
+        return getnewsletters(null);
     }
-    function getnewsletters() {
+    function getnewsletters(resp) {
         if (typeof (resp) != 'undefined' && resp != null) {
             $scope.newsletters = resp;
         }
@@ -53,6 +71,7 @@
             let level = $scope.selectedlevel;
             if (typeof (level) != 'undefined') {
                 teacherservice.gettodaynewsletters(level, authdata).then(function (response) {
+                    debugger;
                     if (response.data != '' && response.data != null) {
                         $scope.newsletters = response.data;
                         $scope.recordsnotfound = false;

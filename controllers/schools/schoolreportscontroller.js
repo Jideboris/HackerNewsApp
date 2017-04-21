@@ -1,6 +1,5 @@
 ﻿eAssessorApp.controller('schoolreportscontroller', function ($scope, subjectservice, menuservice,
     commonservice, $location, $routeParams, clientregistrationservice, $cookieStore, $window, $location, $route) {
-    debugger;
     var id = $routeParams.id;
     var disciplinerecordid = $routeParams.disciplinerecordid;
     $scope.files = [];
