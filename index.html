@@ -1,132 +1,38 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="eAssessorApp">
+<html lang="en" ng-app="eHackerApp">
 <head>
-    <title>e-Assessor Home</title>
-
+    <title>Hacker News Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/angular-datepicker.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <!-- SCROLLS -->
-    <!-- load bootstrap and fontawesome via CDN -->
-    <link rel="stylesheet" href="assets/css/bootstrap.css" />
-    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />-->
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <!-- SPELLS -->
-    <!-- load angular and angular route via CDN -->
-    
-    
-   
-    <script src="/assets/js/angular.js"></script> 
-    <script src="/assets/js/angular-cookies.js"></script>
-    <script src="/assets/js/angular-route.min.js"></script>
-    <script src="/assets/js/angular-sanitize.min.js"></script>
-    <script src="/assets/js/angular-datepicker.js"></script>
-    <script src="/assets/js/script.js"></script>
-    <script src="/factory/authfactory.js"></script> 
-
-    
-
-    
-    <script src="/controllers/locationcontroller.js"></script>
-    <script src="/controllers/students/studentcontroller.js"></script>
-    <script src="/controllers/homecontroller.js"></script>
-    <script src="/controllers/subjectcontroller.js"></script>
-    <script src="/controllers/topiccontroller.js"></script>
-    <script src="/controllers/questioncontroller.js"></script>
-    <script src="/controllers/admincontroller.js"></script>
-    <script src="/controllers/pdfcontroller.js"></script>
-    <script src="/controllers/teachers/teachercontroller.js"></script>
-    <script src="/controllers/teachers/teacherattendancecontroller.js"></script>
-    <script src="/controllers/teachers/teachertestsetupcontroller.js"></script>
-    <script src="/controllers/teachers/teacherassignmentcontroller.js"></script>
-    <script src="/controllers/teachers/teacherstudentscorecontroller.js"></script>
-    <script src="controllers/teachers/teacherquestioncontroller.js"></script>
-    <script src="controllers/teachers/teachersuggestioncontroller.js"></script>
-    <script src="controllers/teachers/teachingmethodcontroller.js"></script>
-    <script src="controllers/teachers/teacheremailingcontroller.js"></script>
-
-    <script src="/controllers/logincontroller.js"></script>
-    <script src="/controllers/schoolregistrationcontroller.js"></script>
-    <script src="/controllers/clientregistrationcontroller.js"></script>
-    <script src="/controllers/schools/schoolreportscontroller.js"></script>
-    <script src="/controllers/parents/parentcontroller.js"></script>
-
-    <script src="/services/teachercommon.js"></script>
-    <script src="/services/commonservice.js"></script>
-    <script src="/services/locationservice.js"></script>
-    <script src="/services/subjectservice.js"></script>
-    <script src="/services/topicservice.js"></script>
-    <script src="/services/authenticationservice.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+    <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="/assets/script.js"></script>
+    <script src="/factory/authfactory.js"></script>
     <script src="/services/homeservice.js"></script>
-    <script src="/services/questionservice.js"></script>
-    <script src="/services/schoolregistrationservice.js"></script>
-    <script src="/services/userservice.js"></script>
-    <script src="/services/adminservice.js"></script>
-    <script src="/services/clientregistrationservice.js"></script>
-    <script src="/services/teacherservice.js"></script>
     <script src="/services/menuservice.js"></script>
-    <script src="/services/studentservice.js"></script>
-
-    
-
-    <script src="/directives/locationdirective.js"></script>
-    <script src="/directives/downloaddirective.js"></script>
-    <script src="/directives/uploadfiledirective.js"></script>
-    <script src="/directives/datepickerdirective.js"></script>
- 
+    <script src="/controllers/homecontroller.js"></script>
 </head>
-<body ng-controller="logincontroller" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body  data-spy="scroll" data-target=".navbar" data-offset="50">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">e-Assessor</a>
-            </div>
             <ul class="nav navbar-nav">
                 <li ng-style="home">
                     <a class="navbar-brand" href="/">Home</a>
                 </li>
-                <li ng-style="assessment">
-                    <a class="navbar-brand" href="#access">Assessment</a>
-                </li>
-                <li ng-style="student">
-                    <a class="navbar-brand" href="#studentreport">Student</a>
-                </li>
-                <li ng-style="teacher">
-                    <a class="navbar-brand" href="#teacherstudentregistration">Teacher</a>
-                </li>
-                <li ng-style="parent">
-                    <a class="navbar-brand" href="#parent">Parent</a>
-                </li>
-                <li ng-style="registration">
-                    <a class="navbar-brand" href="#schoolclientstudent">School</a>
-                </li>
-
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-style="admin">
-                    <a class="navbar-brand" href="#admin_main">Admin</a>
-                </li>
-                <li>
-                    <!--<a href="#login"><p class="glyphicon glyphicon-log-in"></p> {{loglabel}}</a>-->
-                    <a ng-click="logprocess(loglabel)"><p class="glyphicon glyphicon-log-in"></p> {{loglabel}}</a>
-                </li>
-            </ul>
+        
         </div>
     </nav>
 
-    <div class="container-fluid" style="margin-bottom:50px">
-        <div ng-view></div>
+    <div class="container-fluid">
+        <div class="inner-fluid" ng-view></div>
     </div>
 
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <p style="color:white">Copyright &copy; e-Assessor 2017</p>
+        <p style="color:white">Copyright &copy; Hacker News 2018</p>
     </nav>
 </body>
 </html>

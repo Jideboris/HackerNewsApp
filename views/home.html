@@ -1,19 +1,33 @@
 ﻿<div class="container-fluid">
+    <div class="col-xs-12 col-md-12 col-sm-12">
+        <button ng-click="showless()" ng-show="hasless()">Show Less</button>
+    </div>
     <div class="row content">
         <div class="col-xs-12 col-md-12 col-sm-12 text-left">
-            <!--<div ng-if="isdefault" ng-include="'/views/templates/default.html'"></div>-->
-            <!--<div ng-if="isaboutlogin" ng-include="'/views/login/login.html'">-->
-            <!--<form name="form" class="frmReg form-horizontal" role="form" id="subscriptionForm">-->
             <div class="home-container">
-                <div ng-repeat="itemmenu in homemenus | orderBy: 'description' ">
-                    <a href="#">
-                        <div class="boxshadow">
-                            <div class="inner-button"><input type="button" class="btn btn-link" value="{{itemmenu.description| uppercase }}" /></div>
+                <accordion>
+                    <accordion-group ng-repeat="group in parents | orderBy: 'id'" heading="{{group.id}}" is-open="group.open">
+                        <accordion-heading>
+                            <label ng-click="getallcontents(group.id)">{{group.title}}</label>               
+                        </accordion-heading>
+                        <label ng-show="iswaiting" style="color:red;font-size:larger">Please wait.......</label>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr ng-repeat="model in children">
+                                        <td> {{$index + 1}}.</td>
+                                        <td>{{model.text}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </a>
-                </div>
+
+                    </accordion-group>
+                </accordion>
             </div>
         </div>
-
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12">
+        <button ng-click="showmore()" ng-show="hasmore()">Show More</button>
     </div>
 </div>
